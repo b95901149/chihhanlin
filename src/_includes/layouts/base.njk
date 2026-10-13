@@ -1,0 +1,127 @@
+{%- macro subnav(items, current) -%}
+<div class="wsite-menu-wrap" style="display:none">
+	<ul class="wsite-menu">
+{%- for it in items %}
+		<li id="{{ it.id }}"
+	class="wsite-menu-subitem-wrap {% if it.url and it.url == current %}wsite-nav-current{% endif %}"
+	>
+	<a
+		{% if it.url %}href="{{ it.url }}"{% endif %}
+		class="wsite-menu-subitem"
+		>
+		<span class="wsite-menu-title">
+			{{ it.title }}
+		</span>{% if it.children %}<span class="wsite-menu-arrow">&gt;</span>{% endif %}
+	</a>
+	{% if it.children %}{{ subnav(it.children, current) }}{% endif %}
+</li>
+{%- endfor %}
+	</ul>
+</div>
+{%- endmacro -%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>{{ htmlTitle or title }}</title>
+<meta property="og:site_name" content="湖中月影" />
+<meta property="og:title" content="{{ title }}" />
+{% if description %}<meta property="og:description" content="{{ description }}" />
+{% endif %}<link id="wsite-base-style" rel="stylesheet" type="text/css" href="/vendor/cdn2/css/sites.css" />
+<link rel="stylesheet" type="text/css" href="/files/main_style.css" title="wsite-theme-css" />
+<link rel="stylesheet" type="text/css" href="/assets/prism.css" />
+<link rel="stylesheet" type="text/css" href="/assets/glightbox/css/glightbox.min.css" />
+<link rel="stylesheet" type="text/css" href="/assets/site.css" />
+{% if headerImage %}<style type="text/css">
+.wsite-header {
+	background-image: url({{ headerImage }}) !important;
+	background-position: 0 0 !important;
+}
+</style>
+{% endif %}<script src="/files/templateArtifacts.js"></script>
+<script>
+var STATIC_BASE = '{{ pathPrefix }}vendor/cdn1/';
+var ASSETS_BASE = '{{ pathPrefix }}vendor/cdn2/';
+var STYLE_PREFIX = 'wsite';
+</script>
+<script src="/vendor/cdn2/js/jquery-1.8.3.min.js"></script>
+<script src="/vendor/cdn2/js/lang/en/stl.js"></script>
+<script src="/vendor/cdn2/js/site/main.js"></script>
+<script>_W = _W || {}; _W.relinquish && _W.relinquish(); _W.themePlugins = [];</script>
+<script>
+function initFlyouts(){
+	initPublishedFlyoutMenus(
+		{{ nav | topNavJson | safe }},
+		"{{ navId }}",
+		'',
+		'active',
+		false,
+		{{ flyout.templates | dump | safe }},
+		{}
+	)
+}
+</script>
+</head>
+<body class="{{ bodyClass }}"><div id="header-outer-wrap">
+	<div class="wrapper">
+		<table id="header">
+			<tr>
+				<td id="logo"><span class="wsite-logo">
+	<a href="/index.html">
+		<img src="/uploads/8/4/4/0/8440048/1368007381.png" style="margin-right:50px;" alt="湖中月影" />
+	</a>
+</span></td>
+				<td id="header-right">
+					<table>
+						<tr>
+							<td class="phone-number"></td>
+							<td class="social"><div style="text-align:left;"><div style="height:0px;overflow:hidden"></div>
+<span class="wsite-social wsite-social-default"></span>
+<div style="height:0px;overflow:hidden"></div></div></td>
+							<td class="search"></td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+		<div id="navigation">
+			<ul class="wsite-menu-default">
+{%- for it in nav %}
+					<li id="{% if it.url and it.url == permalink %}active{% else %}{{ it.id }}{% endif %}" class="wsite-menu-item-wrap">
+						<a
+							{% if it.url %}href="{{ it.url }}"{% endif %}
+							class="wsite-menu-item"
+							>
+							{{ it.title }}
+						</a>
+						{% if it.children %}{{ subnav(it.children, permalink) }}{% endif %}
+					</li>
+{%- endfor %}
+			</ul>
+		</div>
+	</div>
+</div>
+<div id="main-wrapper">
+	<div class="wrapper">
+		<div id="content">
+{%- if banner %}
+			<div id="banner-container">
+				<div id="banner">
+					<div class="wsite-header"></div>
+				</div>
+				<div class="clear"></div>
+			</div>
+{%- endif %}
+			<div id="text">
+{{ content | safe }}
+			</div>
+		</div>
+		<div id="footer"></div>
+		<div class="clear"></div>
+	</div>
+</div>
+<div id="customer-accounts-app"></div>
+<script src="/assets/glightbox/js/glightbox.min.js"></script>
+<script src="/assets/site.js"></script>
+</body>
+</html>

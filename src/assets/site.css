@@ -1,0 +1,43 @@
+/* additions of the Markdown edition (everything else comes from the original Weebly theme css) */
+
+/* code blocks: mimic the original boxes (pre-wrap, light background, Courier New) */
+#wsite-content pre[class*="language-"] {
+  background: #fff;
+  border: 1px solid #ccc;
+  border-left-width: 6px;
+  border-radius: 0;
+  margin: 10px 0;
+  padding: 8px 12px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow-x: auto;
+  line-height: 1.15;
+  text-shadow: none;
+}
+#wsite-content pre[class*="language-"],
+#wsite-content code[class*="language-"] {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 13px;
+  color: #000;
+  text-shadow: none;
+  tab-size: 4;
+}
+/* Notepad++ look for LaTeX listings: commands blue bold, braces purple bold, % comments maroon */
+.language-latex .token.function { color: #0000ff; font-weight: bold; }
+.language-latex .token.punctuation { color: #8000ff; font-weight: bold; }
+.language-latex .token.comment { color: #800000; }
+.language-latex .token.selector, .language-latex .token.keyword { color: #0000ff; font-weight: bold; }
+.language-latex .token.parameter, .language-latex .token.url { color: #000; }
+/* pygments-ish colours for C / Arduino listings */
+.language-cpp .token.keyword { color: #204a87; font-weight: bold; }
+.language-cpp .token.comment { color: #8f5902; font-style: italic; }
+.language-cpp .token.number { color: #0000cf; font-weight: bold; }
+.language-cpp .token.operator { color: #ce5c00; font-weight: bold; }
+.language-cpp .token.punctuation { color: #000; font-weight: bold; }
+.language-cpp .token.function, .language-cpp .token.class-name { color: #000; }
+.language-cpp .token.string { color: #4e9a06; }
+.language-cpp .token.macro, .language-cpp .token.directive { color: #8f5902; font-style: italic; }
+
+/* lightbox */
+#wsite-content .wsite-image a.glightbox { cursor: zoom-in; }
+.glightbox-container { z-index: 100000 !important; }

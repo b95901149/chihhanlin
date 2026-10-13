@@ -1,0 +1,338 @@
+\chapter{量子力學的各種表示理論}
+
+\section{有限維與無限維的向量空間}
+
+在第一章討論向量空間時，我們一直採以抽象的符號來說明向量與向量空間的種種性質與相關定理。從這一章開始，我們將以學習過的數學，或者新介紹的數學工具，重新驗證上一章以抽象符號描述的理論。
+
+首先我們以 $\mathcal{C}^n$ 空間為例，過去我們學習過的矩陣理論，其實就是有限維向量空間中最具體的表示（representation）。在 $\mathcal{C}^n$ 空間中的一個向量，通常用 $n$ 個複數由上而下排成一行來表示，譬如抽象的向量 $ \bar{x} $ 即可表示為
+
+\begin{align}
+\bar{x}=\begin{pmatrix}x_1\\x_2\\\vdots\\x_i\\x_{i+1}\\\vdots\\x_n\end{pmatrix},
+\end{align}
+
+\noindent 這個向量矩陣我們稱為行矩陣（column matrix），其中 $x_i$ 是該向量的第 $i$ 個分量，當然是複數。因為矩陣的運算操作法則與向量的兩個基本操作法則一致，並且也滿足向量的八個條件，這就是為何數學家以矩陣來進行有限維向量空間的各種運算。
+
+用行矩陣來表示 $\mathcal{C}^n$ 空間中的一個向量並不是唯一的選擇或方法。我們也曾在第一章時，將一個向量 $x$ 用橫寫得 $n$ 個 $x_i$，即 $(x_1, x_2, \ldots, x_i, \ldots, x_n)$ 來表示。也就是說 $n$ 維向量也可以用列矩陣（row matrix） 來描述。用列矩陣來表示向量的線性空間稱為$\mathcal{C}^n$ 空間的對偶空間（dual space），使用符號 $ \tilde{\mathcal{C}}^n $ 來表示。為了有別於前述的行矩陣 $\bar{x}$，$ \tilde{\mathcal{C}}^n $ 中的向量符號為：
+
+\begin{align}
+\tilde{x}=\begin{pmatrix}x_1,&x_2,&\ldots, & x_i, & x_{i+1}, & \ldots, & x_n \end{pmatrix},
+\end{align}
+
+矩陣的表示法有很多方便之處。$\mathcal{C}^n$ 空間的第 $i$ 個基底向量就很自然地表為 $\bar{e_i}$，它也是具有 $n$ 個分量的行矩陣，除了第 $i$ 個分量為 1，其他分量皆為零，即
+
+\begin{align}\label{columnmatrix}
+\bar{e_i}=\left(\begin{array}{c}0\\0\\\vdots\\1\\0\\\vdots\\0\end{array}\right),
+\end{align}
+
+任何一個向量 $\bar{x}$ 即可表以該組基底的線性組合，即
+
+\begin{align}
+\bar{x}=\sum_{i=1}^nx_i\bar{e_i}.
+\end{align}
+
+在 $ \tilde{\mathcal{C}}^n $ 空間中，第 $i$ 個基底向量則寫為
+
+\begin{align}
+\tilde{e_i}=\begin{pmatrix}0,&0,&\ldots, & 1, & \ldots, & 0 \end{pmatrix}.
+\end{align}
+
+所以任何 $ ^*\mathcal{C}^n $ 空間中的向量 $\tilde{x}$ 也可以表示成 $\tilde{e_i}$ 的線性組合，即 
+
+\begin{align}
+\tilde{x}=\sum_{i=1}^nx_i\tilde{e_i}.
+\end{align}
+
+以矩陣討論量子力學時， $\tilde{x}$ 空間的觀念用處不多，反而另一個對偶空間 $ ^*\mathcal{C}^n $ 的用處更大。 $ ^*\mathcal{C}^n $ 空間中的向量也是一個列矩陣，在 $ \mathcal{C}^n $ 中的一個向量 $\bar{x}$ 對應於 $ ^*\mathcal{C}^n $ 中的向量寫為 $\tilde{x}^*$，這個向量是行矩陣 $\bar{x}$ 的伴隨共軛形（adjoint conjugate），亦即將 $\bar{x}$ 的各個分量 $x_i$ 的共軛（complex conjugate）依序擺入列矩陣中：
+
+\begin{align}
+\tilde{x}^*=\bar{x}^\dag=\begin{pmatrix}x_1^*,&x_2^*,&\ldots, & x_i^*, & x_{i+1},^* & \ldots, & x_n^* \end{pmatrix}
+\end{align}
+
+$ ^*\mathcal{C}^n $ 空間的好處可以從向量空間的內積計算看出來。當我們求取 $\bar{x}$ 與 $\bar{y}$ 這組有序對的內積時我們就可以遵循矩陣的基本操作法則，計算 $\bar{x}$ 向量的伴隨共軛 $\bar{x}^\dag$ 與 $\bar{y}$ 向量的積。也就是內積 $(x,y)$ 可寫為列矩陣 $\tilde{x}^*$ 與行矩陣 $\bar{y}$ 的積。
+
+\begin{align}
+(x,y)=\tilde{x}^*\bar{y}=\bar{x}^\dag\bar{y}=\begin{pmatrix}x_1^*&x_2^*&\ldots & x_i^*&\ldots &x_n^*\end{pmatrix}\begin{pmatrix}y_1\\y_2\\\vdots \\y_i\\\vdots\\y_n\end{pmatrix}=\sum_{i=1}^nx_i^*y_i.
+\end{align}
+
+值得一提的是 $ \tilde{\mathcal{C}}^n $ 空間及 $ ^*\mathcal{C}^n $ 空間的基底構成相同，第 $i$ 個基底向量都可寫為
+
+\begin{align}\label{rowmatrix}
+\tilde{e_i}^*=\tilde{e_i}=\begin{pmatrix}0,&0,&\ldots, & 1, & \ldots, & 0 \end{pmatrix}.
+\end{align}
+
+由 eq.~\ref{rowmatrix} 與 eq.~\ref{columnmatrix} 可以得到
+
+
+\begin{align}
+\tilde{e_i}\bar{e_j}=\delta_{ij}.
+\end{align
+
+\noindent 上式說明了 $(\bar{e_1),\bar{e_2),\ldots, \bar{e_i), \ldots, \bar{e_n))$ 這 $n$ 個 $ \mathcal{C}^n $ 空間的基底已經正則化（orthonormalized）。
+
+$\mathcal{C}^n $ 空間中線性算子（linear operator）在矩陣的表示法就是大家所熟悉的 $n\times n$ 矩陣。如果我們用相同的符號 $ \mathbf{A} $ 來表示 $n\times n$ 矩陣，則矩陣元素（matrix elements）$A_{ij}$ 可寫為：
+
+\begin{align}\label{matrix-present1}
+A_{ij}=\tilde{e_i}\mathbf{A}\bar{e_j}.
+\end{align}
+
+因為 $\bar{e_j}$ 的伴隨共軛為 $\bar{e_j}$，$\tilde{e_i}$ 的伴隨共軛為 $\bar{e_i}$，所以 $ \mathbf{A}^\dag $ 的矩陣元素 $(A_{ij})^\dag$ 為
+
+\begin{align}
+(A_{ij})^\dag=\tilde{e_i}\mathbf{A}^\dag\bar{e_j}=\bar{e_i}^\dag A^\dag \tilde{e_j}^\dag=(\tilde{e_j}\mathbf{A}\bar{e_i})^\dag.
+\end{align}
+
+但 $\tilde{e_j}\mathbf{A}\bar{e_i}$ 唯一純數，所以它的伴隨形（adjoint）就是取複共軛（complex conjugate），因此
+
+\begin{align}
+(A^\dag)_{ij}=(\tilde{e_j}\mathbf{A}\bar{e_i})^\dag=(\tilde{e_j}\mathbf{A}\bar{e_i})^*
+= A_{ji}^*.
+\end{align}
+
+\noindent 驗證了 $\mathbf{A}$ 的伴隨共軛形式。
+
+如果 $\mathbf{A}$ 代表量子系統中的可觀測量（observable），那麼 $\mathbf{A}=\mathbf{A}^\dag$，當該系統在量子態 $\bar{x}$ 進行 $\mathbf{A}$ 的測量時，它的期望值可表以 $\bar{x}^\dag\mathbf{A}\bar{x}$ 三個矩陣的乘積：
+
+\begin{align}
+\expecto{\mathbf{A}}=\bar{x}^\dag\mathbf{A}\bar{x}=\bar{x}^\dag\mathbf{A}^\dag\bar{x} =(\bar{x}^\dag\mathbf{A}\bar{x})^\dag=(\bar{x}^\dag\mathbf{A}\bar{x})^*=\expecto{\mathbf{A}}^*.
+\end{align} 
+
+因此我們再次用矩陣來驗證量子力學中的可觀測量之期望值是實數。
+
+有限維向量的矩陣表示法對於建構投影算子（projection operator）極為方便。如果我們把基底向量（行矩陣） $\bar{e_i}$ 寫在左邊，並在右邊乘上共軛空間的基底向量（列矩陣） $\tilde{e_j}$，則該矩陣乘積就是一個 $i$ 維子空間（$i$ subspace）的投影算子 $\mathbf{P}_i$，即
+
+
+\begin{align}
+\mathbf{P}_i=\bar{e_i}\tilde{e_i}=\left(\begin{array}{c}0\\0\\\vdots\\1\\0\\\vdots\\0\end{array}\right)\begin{pmatrix}0&0&\ldots & 1 & 0 & \ldots & 0 \end{pmatrix}=
+\begin{pmatrix}
+0&0&\ldots&0&0&\ldots&0\\
+0&\ddots&&&&&\vdots\\
+\vdots&&\ddots&&&&\vdots\\
+0&&&1&&&0\\
+0&&&&0&&0\\
+\vdots&&&&&\ddots&\vdots\\
+0&0&\ldots&0&0&\ldots&0\\
+\end{pmatrix}.
+\end{align}
+
+讀者可自行驗證
+
+\begin{align*}
+\mathbf{P}_i\mathbf{P}_j=\left\{\begin{array}{l}0, \mbox{當}~ i\neq j, \\ \mathbf{P}_i, \mbox{當}~ i\neq j, ~\mbox{亦即}~ \mathbf{P}_i^2=\mathbf{P}_i.\end{array}
+\end{align*}
+
+一個可以投影到子空間 $\mathcal{M}$ 的投影算子 $\mathbf{P}_\mathcal{M}$ 則為 $\mathbf{P}_i$ 的部份和，亦即將 $\mathcal{M}$ 中的所有 $e_i$ 的投影算子相加：
+
+
+\begin{align}
+\mathbf{P}_\mathcal{M}=\sum_{ e_i\in\mathcal{M}}\mathbf{P}_i.
+\end{align}
+
+如果 $\mathcal{M}$ 取為 $n$ 維的全部空間，則
+
+
+\begin{align}
+\sum_{i=1}^n\mathbf{P}_i=\sum_{i=1}^n\bar{e_i}\tilde{e_j}=\mathbf{I}.
+\end{align}
+
+\noindent 上式就是封閉性質（closure relation）的矩陣表達。
+
+對應於投射在子空間中向量 $\bar{y}$ 的投影算子 $\mathbf{P}_{\bar{y}}$ ，我們也可以利用行矩陣 $\bar{y}$ 與其伴隨共軛的列矩陣 $\tilde{y}$ 有序操作來建構出投影算子：
+
+\begin{align}
+\mathbf{P}_y=\bar{y}\bar{y}^\dag=\bar{y}\tilde{y}^*.
+\end{align}
+
+矩陣表示法適用於有限維的向量空間，它無法應用在無限維空間的討論與分析。但是量子力學涉及的 Hilbert 空間往往都是無限維度，並且是不可分離的（nonseparable）。幸好在 1930 年代，Dirac  設計了一套符號適合用來討論及分析有限維或無限維、可分離或者不可分離的 Hilbert 空間，直至今日這套簡潔的符號系統仍廣為物理學家使用。
+
+在 Hilbert 空間 $\mathcal{H}$ 中的一個向量， Dirac 用符號 $\ket{\alpha}$ 來表示，並稱之為 ket 向量。對應於 Hilbert 空間 $\mathcal{H}$ 的對偶空間 $^*\mathcal{H}$ 的伴隨共軛向量則使用 符號 $\bra{\alpha}$  來註記，並稱為 bra 向量。當我們要計算一對有序向量 $\beta$ 與 $\alpha$ 的內積時，可以用 Dirac 的符號系統（bra-ket）將 $(\beta, \alpha)$ 寫為 $\bra{\alpha}\cdot\ket{\beta}$， 或者簡寫為 $\braket{\beta}{\alpha}$，也就是從 $^*\mathcal{H}$ 取一個 bra 向量 $\bra{\alpha}$ 和 $\mathcal{H}$ 空間中的 ket 向量 $\alpha$ 依照有序對（order pair）的規則乘在一起：
+
+\begin{align}
+\bra{\alpha}\ket{\beta}\equiv\braket{\alpha}{\beta}.
+\end{align}
+
+當 $\beta$ 取為 $\alpha$ 時，相當於得到 $\mathcal{H}$ 的範數平方，
+
+\begin{align}
+\norm{\alpha}^2=\braket{\alpha}{\alpha}.
+\end{align}
+
+如果 $\mathbf{A}$ 代表 $\mathcal{H}$ 空間中的一個可觀測量，當 $\mathbf{A}$ 作用於 $\ket{\alpha}$ 而得到 $ \ket{\alpha'} $，即 $\mathbf{A}\ket{\alpha}=\ket{\alpha'}$ ，我們計算 $\ket{\beta}$ 與 $\ket{\alpha'}$ 內積時可寫為
+
+\begin{align}
+(\beta, \alpha')=\braket{\beta}{\alpha'} = \bra{\beta}\left(\mathbf{A}\ket{\alpha}\right) \equiv \bra{\beta}\mathbf{A}\ket{\beta}.
+\end{align}
+
+上式中間項的括號往往可以省略，並且意味著算子 $\mathbf{A}$ 是作用於右邊的 ket 向量。如果計算 $\ket{beta'}=\mathbf{A}\ket{\beta}$ 和 $\ket{\alpha}$ 的內積時，則因為 $\bra{\beta'}=(\ket{\beta'})^\dag=\bra{\beta}\mathbf{A}^\dag$，所以
+
+\begin{align}
+(\beta',\alpha)=(\mathbf{A}\beta, \alpha)=(\bra{\alpha}\mathbf{A}^\dag)\ket{\beta}=\bra{\alpha}\mathbf{A}^\dag\ket{\beta}.
+\end{align}
+
+上式第三項的括號也可省略。這表示該內積
+
+\begin{align}
+\bra{\beta}\mathbf{A}^\dag\ket{\alpha}=\bra{\beta}(\mathbf{A}^\dag\ket{\alpha})=(\beta, \mathbf{A}^\dag\alpha),
+\end{align}
+
+可寫為
+
+\begin{align}
+(\beta', \alpha)=(\mathbf{A}\beta, \alpha)=(\beta, \mathbf{A}^\dag\alpha).
+\end{align}
+
+該是即為上一章介紹伴隨算子（adjoint operator）$\mathbf{A}^\dag$ 的定義。
+
+如果 $\mathbf{A}$ 代表的是一個量子系統的可觀測量時，則 $\mathbf{A}=\mathbf{A}^\dag$，當 $\beta$ 取為 $\alpha$ 時，$(\bra{\alpha}\mathbf{A}^\dag\ket{\alpha})=(\bra{\alpha}\mathbf{A}\ket{\alpha})^\dag= \bra{\alpha}\mathbf{A}^\dag\ket{\alpha}^*$，所以量子可觀測量的期望值為實數亦可由 Dirac 符號系統再次驗證。
+
+第一章我們所討論的量子力學定律，如果以 Dirac 符號來描述，則顯得更為簡潔。我們以量子系統的算子 $\mathbf{A}=\mathbf{A}^\dag$ 來建構一個 $\mathcal{H}$ 空間，那麼該空間的基底就可從 $\mathbf{A}\ket{a}=a\ket{a}$ 的固有向量（eigenvecotr，字根 eigen- 為德語『具備某種特徵』、『特定於某物』之意）方程式解出所有的 $\ket{a}$ 而獲得。當固有值（eigenvalue） $a$ 是離散值，我們可用 $a_1, a_2, a_3, \ldots, a_i, \ldots $ 來表示，當足碼 $i$ 由 1 至 $n$ 就能描述所有可能的 $a_n$ 時，那麼該 Hilbert 空間就是 $n$ 維度空間。如果 $a_i$ 可以取無限多值，那麼這個 $\mathcal{H}$ 空間為無限多維度可分離的 Hilbert 空間。任何該系統的量子狀態 $\ket{\alpha}$ 就可表以 $\ket{\alpha_i}$ 的線性組合，即
+
+\begin{align}
+{\alpha} = \sum_j\alpha_j\ket{a_j}.
+\end{align}
+
+當 $\ket{\alpha_i}$ 已正則化時，
+
+\begin{align}
+\braket{a_i}{a_j}=\delta_{ij},
+\end{align}
+
+那麼 $\alpha_i$ 可從內積 $\braket{a_i}{\alpha}$ 求出
+
+\begin{align}
+\alpha_i=\braket{a_i}{\alpha}=\bra{a_i}\left(\sum_j\alpha_j\ket{a_j}\right)=\sum_j\alpha_j\delta_{ji}.
+\end{align}
+
+我們可以獲得 Dirac 符號所表示的封閉性質
+
+\begin{align}
+\sum\proj{a_i}{a_i}=\mathbf{I}.
+\end{align}
+
+其中 $\mathbf{P}_i=\proj{a_i}{a_i}$ 就是投射於第 $i$ 個子空間的投影算子。如果是投射於子空間 $\mathcal{M}$ ，則
+
+\begin{align}
+\mathbf{P}_\mathcal{M}=\sum_{i}\mathbf{P}_i=\sum_i\proj{a_i}{a_i},~~~\ket{a_i}\in\mathcal{M}.
+\end{align}
+
+當我們解固有向量方程式 $\mathbf{A}\ket{a_i}=a_i\ket{a_i}$，如果對應於 $a_i$ 具有 $m$-folde 的簡併（degeneracy）時，則該固有向量必須多一個足碼來加以區別簡併態，我們通常將它表以 $\ket{a_i,l}$ 其中 $a_i$ 為固有值，$l=1,2,\ldots, m$ 代表該固有向量的 $m$ 個簡併態。該系統的任何一個量子態 $\ket{alpha}$ 則表為
+
+ 
+\begin{align}
+\ket{\alpha}=\sum_i\sum_{l=1}^m\alpha_{i,l}\ket{\alpha_{i,l}},
+\end{align}
+
+其基底 $\ket{\alpha_{i,l}}$ 的正則化寫為
+
+\begin{align}
+\braket{a_{i,l}}{a_{j,k}}=\delta_{ij}\delta_{jk}.
+\end{align}
+
+量子系統中，對應於某些可觀測量所求出的固有值往往是連續而非離散的。我們也可以用它的固有值來標示其對應的固有向量，比如
+
+\begin{align}
+\mathbf{A}\ket{a}=a\ket{a}.
+\end{align}
+
+$a$ 是一個連續值的實數，因此不可分離的 $\mathcal{H}$ 是無限維的。固有向量 $\ket{a}$ 的正則化當然有別於上述離散的情況，我們必須引入一個新的符號： $\delta$ 函數來進行描述，將 $\ket{a}$ 及 $\ket{a'}$ 的內積寫為
+
+\begin{align}
+\braket{a}{a'}=\delta(a-a').
+\end{align}
+
+因為 $a\neq a'$ 時，$\ket{a}$ 與 $\ket{a'}$  正交，所以 $\delta(a-a')=0$>。但是 $a'$ 可無限接近 $a$ ，所以相似於可分離的固有向量的情況，即 $\braket{a_i}{a_j}=\delta_{ij}$ 且 $\sum_i\braket{a_i}{a_j}=\sun_i\delta{ij}=1$，我們可以定義
+
+\begin{align}
+\int\braket{a}{a'} d\a=\int\deta{a-a')=1.
+\end{align}
+
+也就是說，$\delta(x-a)$ 函數具有以下性質：
+
+\begin{align*}
+\delta(x-a)\left\{\begin{array}{l}=0,\mbox{~當}~x\neq a ~\mbox{時},\\\mbox{未定，當}~x= a ~\mbox{時}.\end{array}
+\end{align*}
+
+但 $\delta(x-a)$ 的總面積為 1，即 $a$ 在積分範圍 $\Omega$ 之內時
+
+\begin{align*}
+\int{\Omega}\delta(x-a)dx=1.
+\end{align*}
+
+結束本節之前，我們還要在介紹一個經常使用，不可分離的 $\mathbf{H}$ 的封閉性質。它也是從 $\sum_i\proj{i}{i}=\mathbf{I}$ 的離散和延伸到 $\ptoj{a}{a}$ 對 $a$ 的積分，即
+
+\begin{align*}
+\int\ket{a}da\bra{a}=\int \mathbf{P}_ada=\mathbf{I},
+\end{align*}
+
+上式中的 $\mathbf{P}_a$ 式投影到基底 $\ket{a}$ 的投影算子 $\mathbf{P}_a=\ket{a}\bra{a}$。
+
+\section{量子力學的 q 表示與 p 表示}
+
+量子系統的實際演算，最常用的是 q 表示（q-representation）。因為大多數的讀者最熟悉的數學也是微積分，所以操作微分算子以及波函數要比操作抽象的線性算子或者量子態來得自然。這一節我們要討論如何將抽象的 $\mathcal{H}$ 空間的量子系統以讀者熟悉的 q 表示來呈現計算的細節。
+
+為了簡要起見，我們只以一維的空間作為示範。首先我們選取對應於位置的量子可觀測量 $ \mathbf{X} $ ，並由 $ \mathbf{X} $ 的固有向量 $\ket{x}$ 來展（span）成一個無限維的 $\mathcal{H}$ 空間，即由
+
+\begin{align}
+\mathbf{X}\ket{x}=x\ket{x}
+\end{align}
+
+\noindent 所獲得的不可分離固有向量 $\ket{x}$ 作為基底來建構一個 $\mathcal{H}$ 空間。如果我們將該量子系統進行位移，例如由 $x$ 的位置移到 $x+\xi$ 的位置，也就是說，我們試著建構一個平移算子（translational operator），以 $\mathbf{U}(\mathbf{P};\xi)=\exp( -\frac{i}{\hbar}\xi\mathbf{P})$ 的符號來表示，那麼將算子作用到固有向量上會得到
+
+\begin{align}
+\mathbf{U}(\mathbf{P};\xi)\ket{x}=e^{-\frac{i}{\hbar}\xi\mathbf{P}}=\ket{x＋\xi}.
+\end{align}
+
+如何求得該平移算子 $\mathbf{U}(\mathbf{P};\xi)$ 為 $\exp( -\frac{i}{\hbar}\xi\mathbf{P})$ 會留待下一章對稱轉換一節中加以討論，我們在此先討論該算子的特性：
+
+\begin{align*}
+\xi&=\mbox{實參數, 即空間中平移的距離}\\
+\mathbf{P}&=\mbox{一維的動量算子},
+\end{align*}
+
+並且 
+
+\begin{align*}
+\mathbf{U}^\dag(\mathbf{P};\xi) = e^{\frac{i}{\hbar}\xi\mathbf{P}}= \mathbf{U}^{-1}(\mathbf{P};\xi).
+\end{align*}  
+
+所以 $\mathbf{U}(\mathbf{P};\xi)$ 是一個么正算子（unitary operator）。我們先證明第一個引理：
+
+\proposition{
+\subsubsection*{引理一}
+$ \mathbf{U}(\mathbf{P};\xi)\ket{x} $ 為位置算子 \mathbf{X} 的固有向量，其固有值為 $x+\xi$; 即 $\mathbf{U}(\mathbf{P};\xi)\ket{x}=\ket{\alpha}$，則 $\mathbf{X}\ket{\alpha}=(x+\xi)\ket{\alpha}$，所以 $\ket{\alpha}$ 可寫為 
+
+\begin{align*}
+\ket{\alpha}=\mathbf{U}(\mathbf{P};\xi)\ket{x}=\ket{x+\xi}.
+\end{align*}}
+
+\subsection*{證明}
+
+從基本對易關係 $ [\mathbf{X},\mathbf{P}]=i\hbar\mathbf{I} $ 我們不難計算 $[\mathbf{X},\mathbf{P}]^n$ 如下：
+
+\begin{align}
+[\mathbf{X},\mathbf{P}^n]=\mathbf{P}^{n-1}[\mathbf{X},\mathbf{P}]+[\mathbf{X},\mathbf{P}^{n-1}]\mathbf{P}=in\hbar\mathbf{P}^{n-1},
+\end{align}
+
+故可進一步得到
+
+\begin{align}
+\notag [\mathbf{X},\mathbf{U}(\mathbf{P};\xi)]&=i\hbar\left[\mathbf{X},\sum_m\frac{1}{m!}\left(-\frac{i}{\hbar}\xi\right)^m\mathbf{P}^m\right]\\
+&=\xi\sum_m\frac{1}{(m-1)!}\left(-\frac{i}{\hbar}\xi\right)^{m-1}\mathbf{P}^{m-1}=\xi\mathbf{U},
+\end{align}
+
+或寫為
+
+\begin{align}
+\mathbf{XU}(\mathbf{P};\xi)=\mathbf{U}(\mathbf{P};\xi)(\mathbf{X}+\xi\mathbf{I}).
+\end{align}
+
+當 $\mathbf{U}(\mathbf{P};\xi)\ket{x}=\ket{\alpha}$ 時，則
+
+\begin{align}
+\mathbf{X}\ket{\alpha}=\mathbf{XU}\ket{x}=\mathbf{U}(\mathbf{X}+\xi\mathbf{I})\ket{x}=\mathbf{U}(x+\xi)\ket{x}=(x+\xi)\ket{\alpha},
+\end{align}
+
+上式表示 $\ket{\alpha}$ 也是 $\mathbf{X}$ 的固有向量，其固有值為 $x+\xi$，亦即 $\ket{\alpha}=c\ket{x+\xi}$。通常 $c$ 為相位因子。為了簡便，通常把 $c$ 取為 1，所以引理一證實了
+
+\begin{align}
+\mathbf{U}(\mathbf{P};\xi)\ket{x}=\ket{x+\xi}.
+\end{align}

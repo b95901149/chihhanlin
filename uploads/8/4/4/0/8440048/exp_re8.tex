@@ -1,0 +1,93 @@
+\documentclass[12pt]{article}
+\title{Exp6: Polarization and Crystal Display\\
+Final Report}
+\author{Group1}
+\linespread{1.1}
+\setlength{\parskip}{5mm}
+
+\begin{document}
+\maketitle
+
+\section*{Theoretical analysis}
+
+If we put a $ \lambda /4$   waveplate between parallel linear polarizers which directions are $ x $ polarized and $ y $ polarized, and the incident laser beam  passing the first polarizer denotes $ \mathbf{J}=[0,1]^T $ by Jones calculus. Assume $ \theta $ is the angle between fast axis(or slow axis$^\dag$ ) and laboratory coordinate $ x $-axis, and $ \beta $ is the rotating angle of the analyzer (the second polarizer).
+
+After passing $ \lambda /4$   waveplate, the Jones vector becomes
+
+
+\begin{eqnarry*}
+$\mathbf{J}'$ &=& $\mathbf{M}$_{\lambda /4}\mathbf{J}=\mathbf{R}(\theta)\left[\begin{array}{cc}e^{-i\Gamma /2}&0\\0&e^{i\Gamma /2}\end{array}\right]\mathbf{R}(-\theta)\mathbf{J}\\
+&=&\left[\begin{array}{cc}e^{-i\Gamma /2}\cos^2 \theta+e^{i\Gamma /2}\sin^2 \theta&-i\sin (\Gamma /2)\sin 2\theta&-i\sin (\Gamma/2)\sin  2\theta&e^{-i\Gamma /2}\sin^2 \theta+e^{i\Gamma /2}\cos^2 \theta\end{array}\right]\mathbf{J}
+\end{eqnarray*}
+
+With $ \Gamma = \pi /4 $ and $ \mathbf{J}=[0,1]^T $, we have
+
+\begin{align}
+$\mathbf{J}'$=\left[\begin{array}{c}-i\sin (\Gamma /2)\sin 2\theta&e^{-i\Gamma /2}\sin^2 \theta+e^{i\Gamma /2}\cos^2 \theta\end{array}\right]=\frac{1}{\sqrt{2}}\left[\begin{array}{c}-i\sin 2\theta &1+i\cos 2\theta\end{array}\right]
+\end{align}
+
+Passing the analyzer, the final Jones vector is
+
+\begin{align}
+$\mathbf{J}_o$=$\mathbf{R}$(-\beta)\left[\begin{array}{cc}1&0&0&0\end{array}\right]\mathbf{R}(\beta)\mathbf{J}=\frac{1}{\sqrt{2}}\left[ \begin{array}{c}
+\sin\beta\cos\beta+i(\sin 2\beta\cos 2 \theta /2-\cos^2\beta\sin 2\theta)&\sin^2\beta+i(\sin^2\beta\cos 2\theta -\sin 2\beta\sin 2 \theta /2)\end{array}\right]
+\end{align}
+
+The optical intensity is proportional to $ \mathbf{J}^\dag\mathbf{J} $. Obviously the intensity is a function of $ \theta $ and $ \beta $.
+
+\begin{align}
+2I= 2$ \mathbf{J}_o^\dag\mathbf{J}_o$ = \sin^2\beta (1+\cos^2 2\theta)+\cos^2\beta \sin^2 2 \theta +\sin 2\theta\cos 2\theta\sin 2 \beta
+\end{align}
+
+With trivial caculations,
+\begin{eqnarray*}
+2I&=&\sin^2 \beta +(\cos\beta\sin 2 \theta +\sin \beta\cos 2\theta)^2=\sin^2\beta+\sin^2(\beta +2\theta)\\
+&=&1-\frac{1}{2}(\cos 2\beta +\cos (2\beta +4\theta))=1-\frac{1}{2}\left\lbrace \cos 2\beta [1+\cos 4\beta]+\sin 2\beta\sin 4\beta\right\rbrace \\
+&=&1-\frac{1}{2}A\cos (2\beta +\alpha)
+\end{eqnarry*}
+
+
+where
+
+$$
+A=\sqrt{(1+\cos 4\theta)^2+\sin^2 4\theta}=\sqrt{2+ 2\cos 4\theta}=2\cos 2\theta
+$$
+
+$$
+\alpha =-\arctan \left(\frac{\sin 4\theta}{1+\cos 4\theta}\right)
+$$
+
+The output intensity is a sinusoidal function
+
+$$
+2I=1-\cos 2\theta\cos (2\beta +\alpha)
+$$
+
+The maximum corresponds with the long axis of polarization ellipse,
+which means we could measure the elliptic polarized light produced by $ \lambda $/4 waveplate.
+$ \alpha $ is the azumith of  polarization ellipse which could be calculated from $ \theta $ or varing $ \beta $.
+
+ 
+\section*{Consider special case(keep $ \lambda $/4 waveplate unmoved)}
+
+
+
+\subsection*{$ \theta $ = (3n+1)$ \pi $/4}
+
+$$
+2I=\sin^2\beta +\cos^2\beta =1
+$$
+
+Since the output beam of $ \theta $ = $ \pi $/4 waveplate  are cicular polarized,
+the intensity drop to const with ratio 1/2 regardless of the angle $ \beta $.
+
+\subsection*{$ \theta $ = n$ \pi $/2}
+
+$$
+2I=2\sin^2 \beta
+$$
+
+Since the input beam's polarizaion direction is parallel to slow axis or fast axis,
+the output polariization suffers zerp phase different between two  eigenbasis.
+The intensity varies just as Mulus law.
+\end{document}

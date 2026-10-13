@@ -1,0 +1,44 @@
+---
+layout: layouts/base.njk
+---
+<div class="wsite-elements wsite-not-footer">
+	<table
+	id="blogTable"
+		class="wsite-not-footer"
+	style="border: 0; width: 100%; table-layout: fixed"
+>
+	<tr>
+	    <td valign="top">
+	        	<div id="{{ blogs[blog].blogDivId }}-blog" class="blog-body" style="float: left;">
+		<div id="wsite-content">
+{{ content | safe }}
+		</div>
+	</div>
+	    </td>
+	        <td class="blog-sidebar" valign="top">
+	            <div id="{{ blogs[blog].sidebarId }}-sidebar" class="column-blog">
+	<div class="blog-sidebar-separator">
+		<ul id="{{ blogs[blog].sidebarId }}-sidebar-list" class="columnlist-blog" style="margin:0; padding: 0;">
+{%- if blogs[blog].author %}
+			<h2 class="blog-author-title" style="text-align:left;">Author</h2>
+<p style="text-align:left;">{{ blogs[blog].author }}</p>
+{% endif %}
+			<h2 class="blog-archives-title" style="text-align:left;">Archives</h2>
+<p class="blog-archive-list">
+{%- for a in blogs[blog].archives %}
+		<a href="/{{ blog }}/archives/{{ a.key }}.html" class="blog-link">{{ a.label }}</a>
+		<br />
+{%- endfor %}
+</p>
+<h2 class="blog-category-title" style="text-align:left;">Categories</h2>
+<p class="blog-category-list">
+	<a href="/{{ blog }}/category/all.html" class="blog-link">All</a>
+	<br />
+</p>
+		</ul>
+	</div>
+</div>
+	        </td>
+	</tr>
+</table>
+</div>

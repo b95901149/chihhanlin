@@ -1,0 +1,157 @@
+\documentclass[12pt]{beamer}
+\usetheme{Malmoe}
+\usecolortheme{dolphin}
+%\usefonttheme{professionalfonts}
+\useoutertheme{miniframes} 
+%{infolines}
+%\usepackage{xmpmulti}
+%\usepackage{fouriernc}
+%\usepackage[T1]{fontenc}
+%\usepackage{fourier}
+%\usepackage[scaled=0.9]{helvet}
+
+\usepackage{bm}
+%\usepackage{titlesec}
+\usepackage{graphicx,subfigure}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+%\usepackage{mathptmx}
+%\usepackage[scaled=.90]{helvet}
+%\usepackage{courier}
+%\usepackage[T1]{fontenc}
+
+\usepackage{fontspec}
+%有這個套件才能自由設定字體
+
+\setsansfont[BoldFont=cwTeXQHei-Bold]{cwTeX Q Ming}
+%cwTeX 預設無粗體，所以必須特別為英文字體設定粗體字體
+%若不會用到 \textbf 指令可以去掉[BoldFont=cwTeXQHei-Bold] 
+
+\newfontfamily\mysm{CMU Typewriter Text}
+%打程式碼的時候會另外用到 type writer font
+%取用時打 {\mysm YOURCODE} 即可
+%沒裝 CMU 自行可以用 Courier New 來取代（較細）
+
+
+\XeTeXlinebreaklocale "zh"
+\XeTeXlinebreakskip = 0pt plus 1pt
+%使用 XeLaTeX 的主要斷行設定
+\linespread{1.35}
+
+\usepackage{mathpazo}
+
+%\usepackage[bitstream-charter]{mathdesign}
+\usepackage{amssymb}
+\usepackage{url}
+\usepackage{appendix}
+\usepackage{indentfirst}
+\usepackage{makeidx}
+\usepackage{array}
+
+
+
+\newcommand{\qdo}[0]{\quad}
+\newcommand{\qdt}[0]{\quad\quad}
+\newcommand{\qdthr}[0]{\quad\quad\quad}
+\newcommand{\qdf}[0]{\quad\quad\quad\quad}
+\newcommand{\qdfiv}[0]{\quad\quad\quad\quad\quad}
+
+\newcommand{\norm}[1]{\|#1\|}
+\newcommand{\sdelta}{{\scriptstyle\Delta}}
+\newcommand{\bra}[1]{\langle#1|}
+\newcommand{\ket}[1]{|#1\rangle }
+\newcommand{\braket}[2]{\langle#1|#2\rangle }
+\newcommand{\proj}[2]{|#1\rangle\langle#2|}
+\newcommand{\expect}[2]{\langle #1\rangle_{#2}}
+\newcommand{\Kappa}[0]{\bm{\mathcal{K}}}
+\newcommand{\parity}[0]{\bm{\mathcal{P}}}
+\newcommand{\parityl}[0]{\bm{p}}
+\newcommand{\charge}[0]{\bm{\mathcal{C}}}
+\newcommand{\ptplus}[0]{\\[+5pt]}
+%%%%%%
+
+\title{Coherent State }
+\author{Chih-Han Lin 林致翰}
+\institute{clin@ltl.iams.sinica.edu.tw}
+%%%%%%
+
+\begin{document}
+\begin{frame}
+\titlepage
+\end{frame}
+
+%%%%%page1
+\begin{frame}
+\frametitle{相干態}
+相干態（coherent state）即湮滅算子 $ \bm{a} $ 對應到的 eigenstate $ \ket{a} $ 
+
+\begin{eqnarray}
+\bm{a}\ket{a}=a\ket{a}.
+\end{eqnarray}
+
+由於 $ \bm{a} $ 非 Heritian ，相干態的 eigenvalue 一般而言為複數。如果使用 $ \ket{n} $ 將 $ \ket{a} $ 展開，即 $ \ket{a}=\sum_n c_n\ket{n} $ ，$ c_n=\braket{n}{a} $ 則
+
+\begin{eqnarray}
+\bm{a}\ket{a}&=&\sum_{n=0}^\infty c_n\bm{a}\ket{n}=\sum_{n=1}^\infty c_n\sqrt{n}\ket{n-1}\\&=&a\sum_{n=0}^\infty c_n\ket{n}.
+\end{eqnarray}
+
+
+\end{frame}
+
+\begin{frame}
+由此可知 $  c_n\sqrt{n}=ac_{n-1} $，故 $ c_1=ac_0 $、$ c_2=ac_1/\sqrt{2}=a^2c_0/\sqrt{2!} $、$ c_n=a^nc_0/\sqrt{n!} $，我們可以將 $ \ket{a} $ 改寫成
+
+\begin{eqnarray}
+\ket{a}=\sum_{n=0}^\infty c_n\ket{n}=c_0\sum_{n=0}^\infty\frac{a^n}{\sqrt{n!}}\ket{n}.
+\end{eqnarray}
+
+$ c_0 $ 可由歸一化條件 $ \braket{a}{a}=1 $ 來決定
+
+\begin{eqnarray}
+\protect\braket{a}{a}=1=|c_0|^2=\sum_{n=0}^\infty\frac{|a|^{2n}}{n!}\braket{n}{n}=|c_0|^2e^{|a|^2}.
+\end{eqnarray}
+\end{frame}
+
+
+\begin{frame}
+因此 $ c_0 =e^{-|a|^2/2} $。 $ \ket{a} $ 投影到 $ \ket{n} $ 中可寫成
+
+\begin{eqnarray}\label{coherent}
+\ket{a}=e^{-|a|^2/2}\sum_{n=0}^\infty\frac{a^n}{\sqrt{n!}}\ket{n}.
+\end{eqnarray} 
+
+$ p(n)=|\braket{n}{a}|^2=e^{-|a|^2/2}/\sqrt{n!} $ ，相干態在 Fock state $ \ket{n} $ 的投影機率即 Poisson 分佈，$ p(n) $ 為出現 $ n $ 顆光子或激發態的機率。在 $ \ket{a} $ 中光子數的平均值即 $ \sum np(n)=|a|^2=\bra{a}\bm{a}^\dag\bm{a}\ket{a} $，其數目與 $ a $ 之 sqare norm 成正比。
+\end{frame}
+
+\begin{frame}
+$ \ket{a} $ 在 q-representation 中的波函數可寫成
+
+\begin{eqnarray}
+\notag\psi_a(x)&=&\braket{x}{a}=\braket{x}{n}\braket{n}{a}\\
+\notag&=& \sqrt{\frac{1}{\sqrt{\pi}}}e^{-(|a|^2+x^2)/2}\sum_{n=0}^\infty\frac{(a/\sqrt{2})^n}{n!}H_n(x)\\
+&=&\sqrt{\frac{1}{\sqrt{\pi}}}e^{-(x-\sqrt{2}x)^2/2}.
+\end{eqnarray}
+\end{frame}
+
+\begin{frame}
+若將 $ a $ 寫為 $ a=x+iy $ ，我們可以將 $ a $ 表示成位置 $ x $ 與動量 $ p $ 在相干態下平均值的線性組合：
+
+\begin{eqnarray}
+\expect{x}{}&=&\bra{a}\bm{x}\ket{a}=\frac{1}{\sqrt{2}}\bra{a}(\bm{a}+\bm{a}^\dag)\ket{a}=\sqrt{2}x,\\
+\expect{p}{}&=&\bra{a}\bm{p}\ket{a}=-\frac{(a-a^*)i\hbar}{\sqrt{2}}=\sqrt{2}\hbar y.
+\end{eqnarray}
+\end{frame}
+
+\begin{frame}
+故 $ \displaystyle a=x+iy=\frac{1}{\sqrt{2}}\left(\expect{x}{}+\frac{1}{\hbar}\expect{p}{}\right) $. 相干態在 q-reprensent. 下的波函數可表達為平均值 $ \sqrt{2}a=\expect{x}{}+\expect{p}{}/\hbar $ 的 Guass 分佈。
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Reference}
+\noindent[1] L.Mandel, E.Wolf, \textsl{Optical Coherence and Quantum Optics}, Cambridge, 1995.\\
+
+\noindent[2] 王正行, 量子力學原理, 2nd ed, 北京大學出版社, 2008.
+\end{frame}
+\end{document}

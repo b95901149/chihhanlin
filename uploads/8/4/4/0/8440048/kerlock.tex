@@ -1,0 +1,338 @@
+\documentclass[8pt]{beamer}
+\setbeamersize{text margin left=8mm, text margin right=8mm} 
+\usetheme{Warsaw}
+%\usetheme{Malmoe}
+%\usecolortheme{dolphin}
+%\usecolortheme[named=Apricot]{structure} 
+%\usefonttheme{professionalfonts}
+%\useoutertheme{miniframes} %{infolines}
+\setbeamertemplate{blocks}[rounded][shadow=true]
+
+%\logo{\includegraphics[scale=0.2]{testlogo.pdf}}
+%\usepackage{xmpmulti}
+%\usepackage{fouriernc}
+%\usepackage[T1]{fontenc}
+%\usepackage{fourier}
+%\usepackage[scaled=0.9]{helvet}
+
+\usepackage{bm}
+\usepackage{titlesec}
+\usepackage{graphicx,subfigure}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+%\usepackage{mathptmx}
+%\usepackage[scaled=.90]{helvet}
+%\usepackage{courier}
+%\usepackage[T1]{fontenc}
+
+
+\usefonttheme{professionalfonts}
+%\def\mathfamilydefault{\rmdefault}
+\usefonttheme{serif} 
+%\usefonttheme{structuresmallcapsserif} 
+\setbeamertemplate{navigation  symbols}{}
+
+%\usepackage{mathpazo}
+
+%\usepackage[bitstream-charter]{mathdesign}
+\usepackage{amssymb}
+\usepackage{url}
+\usepackage{appendix}
+\usepackage{indentfirst}
+\usepackage{makeidx}
+\usepackage{array}
+
+
+\newcommand{\proposition}[1]{\bigskip\noindent\fbox{\begin{minipage}{0.95\textwidth}~\begin{minipage}{0.95\textwidth}#1\end{minipage}\\\smallskip\end{minipage}}\bigskip\vline\vline\vline}
+
+\newcommand{\excercise}{\addtocounter{subsection}{+1}
+\subsubsection{Ex~\underline{\thesubsection}}}
+\newcommand{\stag}[1]{\tag{\arabic{equation}#1}}
+
+\newcommand{\qdo}[0]{\quad}
+\newcommand{\qdt}[0]{\quad\quad}
+\newcommand{\qdthr}[0]{\quad\quad\quad}
+\newcommand{\qdf}[0]{\quad\quad\quad\quad}
+\newcommand{\qdfiv}[0]{\quad\quad\quad\quad\quad}
+
+\newcommand{\norm}[1]{\|#1\|}
+\newcommand{\sdelta}{{\scriptstyle\Delta}}
+\newcommand{\bra}[1]{\langle#1|}
+\newcommand{\ket}[1]{|#1\rangle }
+\newcommand{\braket}[2]{\langle#1|#2\rangle }
+\newcommand{\proj}[2]{|#1\rangle\langle#2|}
+\newcommand{\expect}[2]{\langle #1\rangle_{#2}}
+\newcommand{\Kappa}[0]{\bm{\mathcal{K}}}
+\newcommand{\parity}[0]{\bm{\mathcal{P}}}
+\newcommand{\parityl}[0]{\bm{p}}
+\newcommand{\charge}[0]{\bm{\mathcal{C}}}
+\newcommand{\ptplus}[0]{\\[+5pt]}
+%%%%%%%% make reference
+
+\usepackage[absolute,overlay]{textpos} 
+\newenvironment{reference}[2]{% 
+  \begin{textblock*}{\textwidth}(#1,#2) 
+      \footnotesize\it\bgroup\color{red!50!black}}{\egroup\end{textblock*}} 
+
+
+
+%%%%%%%%%%%
+\title{Simulation of Kerr-lens modelocking Ti:Sapphire laser}
+\author{Chih-Han Lin}
+\institute{Applied Physics Department, National Taiwan University}
+%%%%%%
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+%%%%%page1
+\begin{frame}{Theoretical Model}
+Refer to \textit{Chin. Phys. B} \textbf{19} 014215 (2010) and \textit{Opt. Express} \textbf{12} 2731(2004), pulse propagation around cavity of KLM laser can be describe by the following equation
+    
+\begin{block}{Extended Nonlinear Scr\"{o}dinger (ENLS) equation}
+\begin{align*}
+\frac{\partial a(z,t)}{\partial z}&=(\hat{L}+\hat{N})a(z,t),\\
+\hat{L}a(z,t)&=\frac{1}{2}(g(E_p)-2l)a(z,t)-\frac{i}{2}\left[\beta_2+i\frac{g(E_p)}{(\delta\omega)^2}\right]\frac{\partial^2}{\partial t^2}a(z,t),\\
+\hat{N}a(z,t)&=\underbrace{i\gamma|a(z,t)|^2a(z,t)}_{\mbox{SPM}}-\underbrace{q(a(z,t))a(z,t)}_{\mbox{Fast SA}},\\
+\mbox{where}~~&g(E_p)=\frac{g_0}{1+E_p/E_{sat}},~q(a)=\frac{q_0}{1+|a(z,t)|^2/q_{sat}}~~\mbox{and}~ E_p\simeq \int |a(z,t)|^2 dt. 
+\end{align*}
+\end{block}
+\\[+5pt]
+$\hat{L}a(z,t)$ contains gain, group velocity delay (GVD) and spectrum narrowing effect. On the other hand, $\hat{N}a(z,t)$ collects nonlinear parts such as Self Phase Modulation (SPM) and fast Saturable Absorption induced by Kerr-lens effect.
+
+\end{frame}
+
+\begin{frame}{Numerical solution of ENLS equation}
+
+ENLS equation is often solved by means of split-step Fourier method.  
+\begin{corollary}
+If $\hat{N}$ and $\hat{L}$ commute, we have
+\begin{align*}
+a(z+\delta z,t)\simeq \exp(\hat{N}\delta z)\exp(\hat{L}\delta z)a(z,t).
+\end{align*}
+\end{corollary}
+\\[+5pt]
+
+It means that we can split the whole partial differential equation into linear part and nonlinear part. Firstly, we calculate $a_N(z+\delta z)=\exp(\hat{L}\delta z)a(z,t)$, and then get the next step  $a(z+\delta z, t)$ by $a(z+\delta z,t)=\exp(\hat{N}\delta z)a_N(z+\delta z)$. Thus we can use different algorithm to solve the equation for optimization. 
+\\[+5pt]
+
+ 
+Since $\hat{N}$ in our model includes only constant and $f(D)$ (where $D=\partal/\partial t$ is differential operator on $t$), we may efficiently calculate the $a(z+\delta z,t)=\exp(\hat{N}\delta z)$ in frequency domain, i.e. $D$ becomes $i\omega$ for simplification. 
+
+\begin{align*}
+\tilde{a}(z,\omega)&=\mathcal{F}\{a(z,t)\},\\
+\frac{\partial \tilde{a}}{\partial z}=\hat{N}\tilde{a}&=\left[\frac{g(E_p)}{2}-l+\frac{i\beta_2}{2}\omega^2-\frac{g(E_p)}{2(\delta\omega^2)}\omega^2\right]\tilde{a}=f(\omega)\tilde{a},\\
+\tilde{a}(z+\delta z,\omega)&=\exp(f(\omega)\delta z)\tilde{a}(z,\omega).
+\end{align*}
+
+So that we have $\displaystyle a_N(z+\delta z,t)=\mathcal{F}^{-1}\{\exp[f(\omega)\delta z]\mathcal{F}\{a(z,t)\}$
+
+\end{frame}
+
+\begin{frame}{Experimental Setup of P-GDD ker-lens modelocking Ti:S Laser} 
+
+I will compare the simulation results with experiment data in \textit{Chin. Phys. B} \textbf{19} 014215 (2010). The output average power is about 500 mW (1.68 nJ per pulse). The output power spectrum is shown as follows:
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{expsetup.pdf}
+\end{figure}
+
+The simulation will focus on positive group-delay dispersion (P-GDD) regime.
+  
+\end{frame}
+
+\begin{frame}
+The relation between GDD, spectrum width and pulse duration is shown as follows, \\[+5 pt]
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{expsetup2.pdf}
+\end{figure}
+
+\end{frame}
+
+
+\begin{frame}{RK4 method}
+Instead of using $\tilde{a}(z+\delta z,\omega)&=\exp(f(\omega)\delta z)\tilde{a}(z,\omega)$ to calculate the next step field quantity, we can improve the precision of the numerical solution by 4 order Runge-Kutta (RK4) methods as follows:
+
+\begin{corollary}
+
+\begin{align*}
+\frac{d\hat{a}}{dz}&=f(\hat{a})=f(\omega)\tilde{a},\\
+k_1&=\delta z f(\hat{a}(z)),~~~~k_2=\delta z f(\hat{a}(z)+\frac{1}{2}k_1),\\
+k_3&=\delta z f(\hat{a}(z)+\frac{1}{2}k_2),~~~k_4=\delta z f(\hat{a}(z)+k_3),\\
+\hat{a}(z&+\delta z,\omega)=\hat{a}(z,\omega)+\frac{1}{6}(k_1+2k_2+2k_3+k_4).
+\end{align*}
+\end{corollary}
+\\[+5pt]
+
+When executing nonlinear step calculation, we can promote precision by using RK4 method. 
+\end{frame}
+
+\begin{frame}{Structure of simulation code}
+The simulation result of each round trip is stored in a 2D array \texttt{a1(cycle,size(t\_index))}. The pulse width, total energy and peak intensity are also recorded and plotted after \texttt{klm.m} is finished.\\[+5 pt]
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{flowchart1.pdf}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Simulation Parameters}
+
+\begin{center}
+\begin{tabular}{ccccccc}
+\hline\hline quantity & value & unit & ~~~~ & quantity &  value & unit \\ 
+\hline $g_0$ & 100 & $m^{-1}$ & ~ & \gamma & 30$\times 10^{-5}$ & (W$\cdot$m)$^{-1}$ \\ 
+$E_{sat}$ & 10 & nJ & ~ & $q_0$ & 5 & m$^{-1}$ \\ 
+$\beta_2$ & 58 & fs$^2$/mm & ~ & $q_{sat}$ & 0.3 & MW \\ 
+$\delta\omega$ & 270 & THz & ~ & l_{crystal} & 7 & mm \\
+$l_{cavity}$ & 1820 &mm&&\eta &0.22&\\ 
+\hline \hline
+\end{tabular} 
+\end{center}\\[+10pt]
+
+And the total GDD is between -50 fs$^2$ and 80 fs$^2$. $\beta_{2,prism}$ is calculated as,
+
+\begin{align*}
+\beta_{2,prism}=\frac{\mbox{total GDD}-2\times\beta_2 l_{crystal}}{2\times(l_{cavity}-l_{crystal})}.
+\end{align*}
+
+Both Simulation steps in P-GDD and N-GDD regime are tunable to get steady state solutions. \texttt{frame} and \texttt{cycle} in \textsc{Matlab} code control data dump rate and total round trips.\\[+5pt]  
+
+$\eta$ denotes transmission of output coupler. We can convert $\eta$ into $l$: 
+
+\begin{align*}
+\frac{\partial a}{\partial z}&=-la\Longrightarrow a(z+\delta z)=\exp(-l\delta z)a(z)=\eta  a(z),\\
+\delta z=2\times l_{crystal}&=14~\mbox{mm}\Longrightarrow
+l=\frac{-\ln\sqrt{1-\eta}}{14~\mbox{mm}}\simeq 0.0089~\mbox{mm}^{-1}.
+\end{align*}
+
+\end{frame}
+
+\begin{frame}{Validity of Split-Step Fourier Method}
+We can simulate only GVD effect and compare the pulse width broaden with analytical solution to check the validity of Split-Step Fourier method in our algorithm.
+
+Assume that the dispersion-free pulse has Gaussian shape,
+
+\begin{align*}
+a(t)=\exp\left(-\frac{t^2}{\tau^2}\right)&\Longrightarrow 
+I(t)=a^2(t)=\exp\left(-\frac{2t^2}{\tau^2}\right),\\
+\frac{\partial a}{\partial z}&=-\frac{iD}{2}a=\frac{i\beta_2\delta z}{2}a.
+\end{align*}
+   
+FWHM of I(t) is $\tau\sqrt{2\ln 2}$. If the propagation induce D=GDD, pulse width $\tau$ will be extended to $\tau'$  
+
+\begin{align*}
+\tau'=\sqrt{\tau^2+\frac{(2D)^2}{\tau^2}}=\tau\sqrt{1+\frac{(2D)^2}{\tau^4}}~~~~\mbox{where~} D=\beta_2\delta z .
+\end{align*}
+\end{frame}
+
+\begin{frame}
+We use \texttt{klm\_gvd\_check.m} to modified the algorithm with theoretical solution. Parameters \texttt{gain\_narrowing} and \texttt{gs} are temporal chosen as zero for pure GDD simulation. 
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{gvd1.pdf}
+\end{figure}
+
+The absolute error on FWHM of Gaussian pulse is approximately -3.2 fs with $\beta_2=10$ fs$^2$/mm and round trip length $l=7$ mm.   
+\end{frame}
+
+\begin{frame}{Boundary condition - Limit of pulse width}
+We need boundary conditions  $\lim_{t\rightarrow\pm\infty}a(z,t)=0$ to avoid divergence and aliasing on spectrum. In the following case, the extended pulse does not fulfill the boundary conditions and generates ripples bouncing on both end. Generally, we have to create an temporal array that is as twice larger as the FWHM of simulated pulse.  
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{gvd2.pdf}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+We also did another testing in GDD simulation. We first added positive GDD to broaden the pulse, and then we applied the same amount of negative GDD to compress the pulse. The calculation error $59.1-19.0=0.1$ fs dose not exceed the  resolution of temporal array (0.1 fs).\\[+5 pt] 
+  
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{gvd3.pdf}
+\end{figure}
+\end{frame}
+\end{frame}
+
+\begin{frame}{simulation result}
+Generally the simulation will stop after 2000 round trips (10 steps in P-GDD regime and 2 steps in N-GDD regime per round trip). Here is an example for  GDD=13 fs$^2$ simulation:\\[+10 pt]
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{exc_sample.pdf}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Simulated Pulse duration and Power Spectrum}
+The simulation in \textit{Chin. Phys. B} \textbf{19} 014215 (2010) chose GDD=18, 27, 47 fs$^2$. I did the simulation with the same parameters. Red line indicates the theoretical sech$^2$ shape function with the simulated FWHM of pulse intensity. 
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{compare1.pdf}
+\end{figure}
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{compare12.pdf}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{compare2.pdf}
+\end{figure}
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{compare22.pdf}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+total GDD=18 fs$^2$.\\[+10pt] 
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{gdd18fullshape.png}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+total GDD=27 fs$^2$.\\[+10pt]
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{gdd27fullshape.png}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+total GDD=47 fs$^2$.\\[+10pt]
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{gdd47fullshape.png}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{total1.pdf}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+Pulse energy is not sensitive with GDD.
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{total2.pdf}
+\end{figure}
+\end{frame}
+
+\end{document}

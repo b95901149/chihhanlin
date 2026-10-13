@@ -1,0 +1,18 @@
+---
+layout: layouts/blogshell.njk
+---
+<div id="blog-post-{{ postId }}" class="blog-post">
+		<div class="blog-header">
+			<h2 class="blog-title">
+					<a class="blog-title-link blog-link" href="{{ permalink }}">{{ postTitle }}</a>
+			</h2>
+			<p class="blog-date">
+					<span class="date-text">{{ dateText }}</span>
+			</p>
+		</div>
+		<div class="blog-separator">&nbsp;</div>
+		<div class="blog-content">
+{{ content | safe }}
+		</div>
+		<div class="blog-post-separator"></div>
+</div>

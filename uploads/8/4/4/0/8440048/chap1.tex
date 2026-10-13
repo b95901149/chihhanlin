@@ -1,0 +1,278 @@
+\chapter{量子力學的基本定律及相關定理}
+
+量子力學的理論架構建立在四個基本的定律上，正如同古典力學建構於牛頓三個運動定律形成之基石。不同物理領域的研究者會使用形色各異的數學工具，譬如牛頓為了精確描述物體的運動現象而發明 fluxion，即今日所稱的微分。幾世紀以來，數學家已經發展出古典力學以外形形色色的數學分支，並逐漸演變成各自蓬勃發展的子領域，而物理學家從中選用適合特定物理系統的數學作為理論推演與計算的工具。我們將應用 Hilbert 空間與線性算子（linear oprators）等數學工具來分析量子力學的基本定律。
+
+為了讀者方便，本章開頭會以幾個章節來回顧線性向量空間（linear vector space）、 Hilbert 空間與線性算子（linear oprators）等背景資料，讓不熟悉這些數學的讀者可以省去自我摸索的時間。自信已具有這方面知識的讀者可以考慮跳過這些章節，直接從第 5 節開始閱讀。
+
+\section{向量空間}
+
+我們用符號 $\mathcal{V}$ 代表一個向量空間（vector space），它是由無數多個元素（element）所構成之集合（set），這些元素稱為向量（vectors），平常以斜體的希臘字母 $\psi, \varphi, \chi, \ldots$ 表示。向量空間的元素滿足下述兩種操作（operation）：
+
+\begin{itemize}\itemsep=-2pt
+\item 可加性 （An operation of addition）：對於任意集合中任意一對向量 $\psi$ 與 $\phi$，可對應到一個新的向量 $ \psi +\phi \in \mathcal{V} $, 我們稱它為 $\psi$ 與 $\phi$ 的和。
+
+\item 純量積（An operation of scalar multiplication）：對應於 $ \psi $ 與一個純數 $ a $，則 $ a\psi $ 也是該集合中的一個向量。假如 $a,b$ 皆為純數，$ \psi , \phi $ 與 $ \chi $ 為線性空間的向量，則這些向量還必須滿足下面 8 個條件：
+\addtocounter{equation}{1}
+\begin{align}
+~&\psi +\phi=\phi +\psi,\tag{\arabic{chapter}.\arabic{equation}a}\\
+~&\psi +(\phi +\chi)=(\psi +\phi )+\chi,\tag{\arabic{chapter}.\arabic{equation}b}\\
+~&\psi +\mathit{0}=\psi, ~~\mathit{0}~\mbox{is null vector},\tag{\arabic{chapter}.\arabic{equation}c}~~~~~~~~~~~\\
+~&a(\psi +\phi)=a\psi +a\phi,\tag{\arabic{chapter}.\arabic{equation}d} \\
+~&(a+b)\psi=a\psi+b\psi,\tag{\arabic{chapter}.\arabic{equation}e} \\
+~&a(b\psi)=(ab)\psi,\tag{\arabic{chapter}.\arabic{equation}f}\\ 
+~&1\cdot\psi=\psi,\tag{\arabic{chapter}.\arabic{equation}g}\\
+~&0\cdot \psi=\mathit{0},\tag{\arabic{chapter}.\arabic{equation}h} 
+\end{align}
+\end{itemize}
+
+當 $a,b$ 皆為實數時，我們將該向量空間稱為實向量空間（real vector space），並以 $ \mathcal{V}_r $ 表示。如果 $a,b$ 皆為複數（complex number），則該該向量空間稱複向量空間（complex vector space）$ \mathcal{V}_c $。
+
+\subsubsection*{範例一}
+我們以讀者熟悉的 $ \mathcal{R}^n $ 空間，即 $ n $ 維實數歐式空間（$ n $-dimensional Euclidean space）為例，$ \mathcal{R}^n $ 空間的向量 $ \psi $ 與 $ \phi $ 可表示成 $ \psi =(x_1, x_2,\ldots,$ $x_i, \ldots, x_n) $ 與 $ \phi =(y_1,y_2,\ldots,y_i,\ldots,y_n) $， 其中 $ x_i $ 和 $ y_i $ ($ i=1,2,\ldots,$ $ n $) 皆為實數，且 $ \psi $ 與 $ \phi $ 之和可表以 $ (x_1+y_1,x_2+y_2,\ldots,x_i+y_i,\ldots,x_n+y_n) $。$\psi$ 乘以實數 $a$ 則表以 $ a\psi =a(x_1,x_2,\ldots,x_i,\ldots,x_n)= (ax_1,ax_2,\ldots,ax_i,\ldots$ $ ,ax_n) $。 若 $ a $ 與 $ x_i $ 或 $ y_i $ 皆以複數代之，則該向量空間稱為 $n$ 維複數歐式空間（$ n $-dimensional complex Euclidean space）並以 $ \mathcal{C}^n$ 表示。讀者可以自行檢驗不論實或複複數歐式空間中的向量 $\psi$ 或 $ \phi $ 皆滿足 Eqs.~(1.1a) 至 (1.1h) 的條件。
+
+\subsubsection*{範例二}
+
+在 $ a\leqslant x\leqslant b$ 的範圍內，如果 $ f(x) $ 代表所有連續函數的集合，那麼這些函數也可以形成一個向量空間，因為在可加性與純量積兩種操作下，連續函數也會滿足 Eqs.~(1.1a) 至 (1.1h)之條件。
+
+\subsection{線性獨立與線性相依}
+如果 $ \{\psi_1,\psi_2,\ldots, \psi_m\} $ 代表向量空間中的 $ m $ 向量，並且這 $ m $ 個向量建構如下所示之線性組合
+
+\begin{align}
+\sum_{i=1}^m a_i\psi_i.
+\end{align}
+
+\noindent 當然這 $ m $ 個向量構成的線性組合也是該空間中的向量。如果在所有係數 $ a_i $ 皆為 0 的時候，即 $ a_i =0$， $ i=1,2,\ldots, m $ 才能使該線性組合為零向量（null vector），換言之  
+
+\begin{align}
+\sum_{i=1}^m a_i\psi_i=0
+\end{align}
+
+只有所有係數皆為 0 時才成立，那麼這組 $ m $ 個向量就稱為線性獨立（linear independent）。相反地，如果其中至少有一個係數不為 0，例如 $ a_l \neq 0$，也可以使 $ \sum_{i=1}^ma_i\psi_i=\mathit{0} $，則這組 $ m $ 個向量稱為線性相依（linearly dependent），也就是因為 $a_j\neq 0$ ，所以 $\psi_j$ 可以寫成
+
+\begin{align*}
+\psi_j=\frac{-1}{a_j}\sum_{i\neq j}^m a_i\psi_i.
+\end{align*}
+
+這個式子表示 $\psi_j$ 可以表示成其他 $m-1$ 個向量的線性組合，換言之相依於此 $m-1$ 個向量。
+
+\subsection{維數與基底}
+
+在向量空間 $ \mathcal{V} $ 中，所能找到最大（或最多）的線性獨立向量數目即代表該向量空間的維數（dimension）。如果 $ \mathcal{V}_n $ 代表 $n$ 維的向量空間，那麼任何一組 $n$ 個線性獨立的向量就可成為該向量空間的基底（basis）。
+
+\subsubsection*{範例三}
+
+以我們熟悉的三維空間為例，一般它的基底都是選取互相正交（orthogonal）的三個單位向量，即 $\hat{i}=(1,0,0), \hat{j}=(0,1,0), \hat{k}=(0,0,1)$ 。然而基底在向量空間中的定義並不包含正交性的要求，也不需要是單位向量，只要任何 3 個向量滿足線性獨立的要求：也就是其線性組合只有在全係數為零時才等於零向量的條件，則該組 3 個向量即可成為基底，如
+
+\begin{align*}
+x_1=(a,0,0),~~~x_2=(a,b,0),~~~x_3=(a,b,c)
+\end{align*}
+
+這 3 個向量即構成三維空間的基底，當然物理學家選取正交單位向量作為基底在實際計算上方便許多。在往後數個章節我們會介紹將一般基底轉化成互相正交且屬於單位向量基底的方法。
+
+
+\section{內積}
+
+向量空間中的內積（inner product）有時稱為純量積（scalar product），藉由操作一對前後有序的向量製造出的一個純數，它可以是實數或者是複數。如果以 $ \psi $ 與 $ \phi $ 代表操作的向量對，那麼我們以符號 $ (\psi,\phi) $ 來標示內積結果。內積的定義中要求這對向量保持秩序，所以 $ (\psi,\phi) $ 並不一定等於 $ (\phi,\psi) $。假如內積得到的純數滿足下列四個條件：
+
+\addtocounter{equation}{1}
+\begin{align}
+&(\psi,\phi+\chi)=(\psi,\phi)+(\psi,\chi), \tag{\arabic{chapter}.\arabic{equation}a} \\
+&(\psi,a\phi)=a(\psi,\phi),\tag{\arabic{chapter}.\arabic{equation}b}\\ 
+&(\psi,\phi)=(\phi,\psi)^*,\tag{\arabic{chapter}.\arabic{equation}c}\\ 
+&(\psi,\psi)\geqslant 0,~~~\mbox{只有當}~\psi=0 ~\mbox{時 } (\psi,\psi)=0 .\tag{\arabic{chapter}.\arabic{equation}d}
+\end{align}
+
+那麼 $ (\psi,\phi) $ 就定義為該向量空間，由有序的一對向量 $ \psi $ 及 $ \phi $ 對應的內積。由前述條件我們馬上可以確定 $(\psi,\psi)$ 一定是實數。如果 $ \psi $ 及 $ \phi $ 都不是零向量，但是 $ (\psi, \phi)=(\phi, \psi)=0 $，那麼我們稱 $ \psi $ 與 $ \phi $ （或 $ \phi $ 與 $ \psi $）互相正交（orthogonal）。
+
+\subsubsection*{範例四}
+
+如果 $ \psi=(x_1,x_2,\ldots,$ $ x_n) $ 和 $ \phi=(y_1,y_2,\ldots, y_n) $ 代表 $ \mathcal{C}^n $ 空間的一對向量，那麼它們的內積可以表示成
+
+\begin{align}
+\displaystyle(\psi,\phi)=\sum_{i=1}^n x_i^*y_i=x_1^*y_1+x_2^*y_2+\cdots +x_n^*y_n.
+\end{align}
+
+讀者不難驗證上式滿足內積操作要求的四個條件。
+
+\subsubsection*{範例五}
+
+在範例二中我們曾確認在 $ a\leqslant x\leqslant b $ 範圍中的所有連續函數 $ f(x) $ 構成一個向量空間。在該向量空間中，如果 $ f(x) $ 及 $ g(x) $ 代表有序的一對函數，則它們的內積可以表為
+
+\begin{align}
+(f(x),g(x))=\int_a^bf(x)^*g(x)dx.
+\end{align}
+
+上式的 $ f(x) $ 和 $ g(x) $ 可以是複函數，即 $f(x)=f_1(x)+if_2(x)$。如果 $ |f(x)|^2 $ 和 $ |g(x)|^2 $ 都為有限值（finite），則其各自的內積 $ (f(x),f(x)) $ 和 $ (g(x),g(x)) $ 也都是有限值，則其所屬之向量空間稱為 $ \mathcal{L}^2(a,b)$ 空間。
+
+\subsection{Schwarz 不等式}
+
+
+探討過向量的內積操作之後，我們可以用這些性質進一步推導在量子力學中常使用的 Schwarz 不等式。對應於向量 $\psi$ 及 $\phi$ ， Schwarz 不等式常表以
+
+\begin{align}
+|(\psi,\phi)|=\sqrt{(\psi,\phi)(\phi,\psi)}\leqslant\sqrt{(\psi,\psi)}\sqrt{(\phi,\phi)}.
+\end{align}
+
+證明如下：
+
+令 $ \alpha =\xi+i\eta $ 為一複數，則 $\chi=\psi+\alpha\varphi$ 的內積
+
+\begin{align*}
+(\chi, \chi)&=(\psi+\alpha\varphi, \psi+\alpha\varphi)\\
+&=\xi\{(\psi, \varphi)+(\varphi, \psi)\}+i\eta\{(\psi, \varphi)-(\varphi, \psi)\}+(\xi^2+\eta^2)(\varphi, \varphi)\geqslant 0.
+\end{align*}
+
+$(\chi, \chi)\geqslant 0$ 對於任何的 $\xi$ 及 $\eta$ 值皆成立，換句話說，如果將 $(\chi, \chi)$ 視為 $\xi$ 及 $\eta$ 的函數 $f(\xi, \eta)$，$(\chi, \chi)$ 的極小值也大於等於零，即 $(\chi, \chi)_{\mbox{min}}\geqslant 0$。若 $(\chi, \chi)=f(\xi, \eta$ 在 $\xi=\xi_0, \eta=\eta_0$ 時有極小值
+
+
+\begin{align}
+\frac{\partial f(\xi, \eta)}{\partial \xi}\Bigg|_{\xi_0,\eta_0}=\frac{\partial f(\xi, \eta)}{\partial \eta}\Bigg|_{\xi_0,\eta_0}=0,
+\end{align}
+
+實際計算可以得到
+
+\begin{align*}
+\frac{\partial f(\xi, \eta)}{\partial \xi}\Bigg|_{\xi_0,\eta_0}&=2(\varphi, \varphi)\xi+(\psi, \varphi)+(\varphi, \psi)=0,\\
+\frac{\partial f(\xi, \eta)}{\partial \eta}\Bigg|_{\xi_0,\eta_0}&=2(\varphi, \varphi)\eta+i(\psi, \varphi)-i(\varphi, \psi)=0.
+\end{align*}
+
+整理後得到
+
+\begin{align}
+\xi_0=-\frac{1}{2}\frac{(\psi,\phi)+(\phi,\psi)}{(\phi,\phi)},~~~~
+\eta_0=-\frac{i}{2}\frac{(\psi,\phi)-(\phi,\psi)}{(\phi,\phi)}.
+\end{align}
+
+因此
+
+\begin{align}
+(\chi, \chi)_{\mbox{min}}=f(\xi_0,\eta_0)=(\psi,\psi)-\frac{(\psi,\phi)(\phi,\psi)}{(\phi,\phi)}\geqslant 0,
+\end{align}
+
+移項後即常見的 Schwarz 不等式 $|(\psi,\varphi)|^2\leqslant (\psi, \psi)(\varphi, \varphi)$。
+
+內積的特性也可以將向量空間中一組既不是單位長度也不正交的基底轉化為另一組正交且具有單位長度的新基底，這個轉化過程稱為 Gram-Schmidt 正交化。
+
+\subsection{Gram-Schmidt 正交化}
+
+$\{ \psi_1, \psi_2,$ $\ldots , \psi_n \}$  代表 $n$ 維向量空間中的一組基底，一般而言 $(\psi_i,\psi_j)\neq 0, i\neq j $。也就是說，$\{ \psi_1, \psi_2,$ $\ldots , \psi_n \}$ 只具備線性獨立的性質，但不一定互相正交。然而我們可以根據這一組已有的基底，分兩個步驟來建構一組互相正交且為單位長度的正則基底（orthonomal basis）。
+
+首先，我們先尋找 $n$ 個線性獨立的向量 $\psi_i (i=1,2,\ldots, n)$ ，令 $ \psi_1'=\psi_1 $，$ \psi_2'=\psi_2+\alpha\psi_1' $。為了滿足 $ \psi_1' $ 與 $ \psi_2' $ 互相正交的條件，我們可以適當地選擇 $ \alpha $ 使 $ (\psi_2',\psi_1')=0 $，即
+
+
+\begin{align}
+(\psi_2',\psi_1')=(\psi_2,\psi_1')+\alpha^*(\psi_1',\psi_1')=0,
+\end{align}
+
+因此得到 $ \alpha=-(\psi_2,\psi_1')^*/(\psi_1',\psi_1')=-(\psi_1',\psi_2)/(\psi_1',\psi_1') $，且
+
+\begin{align}
+\psi_2'=\psi_2-\psi_1'\frac{(\psi_1',\psi_2)}{(\psi_1',\psi_1')}.
+\end{align} 
+
+
+同樣地，如令 $ \psi_3'=\psi_3+\alpha\psi_2'+\beta\psi_1' $ 並且由 $ (\psi_3',\psi_1')=(\psi_3',\psi_2')=0 $ 兩個正交條件可以解出 $ \alpha = -(\psi_2',\psi_3) / (\psi_2',\psi_2') $ 及 $ \beta = -(\psi_1',\psi_3)/ (\psi_1',\psi_1') $，並得到
+
+\begin{align}
+\psi_3'=\psi_3-\psi_2'\frac{(\psi_2',\psi_3)}{(\psi_2',\psi_2')}-\psi_1'\frac{(\psi_1',\psi_3)}{(\psi_1',\psi_1')}.
+\end{align} 
+
+從上式不難看出依序做下去可得到 $\psi_i'$ 
+
+\begin{align}
+\notag\psi_i'=\psi_i-\psi_{i-1}'\frac{(\psi_{i-1}',\psi_i)}{(\psi_{i-1}',\psi_{i-1}')}- \psi_{i-2}'\frac{(\psi_{i-2}',\psi_i)}{(\psi_{i-2}',\psi_{i-2}')}-\cdots-\psi_{1}'\frac{(\psi_{1}',\psi_i)}{(\psi_{1}',\psi_{1}')}.
+\end{align}
+
+$\{\psi_1',\psi_2',\ldots,\psi_n'\}$ 就是初步求得一組互相正交的新基底，即 $(\psi_i', \psi_j')=0$ 只要 $i\neq j$。第二個步驟是將這組正則化，如令
+
+
+\begin{align}
+\tilde{\psi_i}=\frac{\psi_i'}{\sqrt{(\psi_i',\psi_i')}},
+\end{align}
+
+\noindent 那麼 $\{\tilde{\psi_1},\tilde{\psi_2},\ldots,\tilde{\psi_n}\}$ 就是該 $n$ 維向量空間的一組正則基底，即 $\tilde{\psi_i}$ 與 $\tilde{\psi_j}$ 滿足 $(\tilde{\psi_i}, \tilde{\psi_j})=\delta_{ij}$。任何一個向量 $\psi$ 就可以由 $\psi_i$ 的線性組合來建構；即由 $n$ 個係數來組合，$\psi=\sum_{i=1}^n\alpha_i\psi_i$，係數 $\alpha_i=(\psi_i, \psi)$。今後當我們討論 $n$ 維向量空間的基底時，即使不特別說明，它們永遠代表的是一組正則基底。
+
+\subsubsection*{範例六}
+
+考慮 $ \mbox{C}(-\infty,\infty) $ 間的連續函數
+
+
+\begin{align}
+f_n(x)=x^n\exp\left(-\frac{x^2}{2}\right),~~~n=0,1,\ldots.
+\end{align}
+
+這組函數是 $ \mathcal{L}^2(-\infty,\infty)$ 空間的一組線性獨立向量，當然它們不一定互相正交。當 $n$ 與 $m$ 皆為偶數或皆為奇數時 $(f_n(x), f_m(x))\neq 0$，只有 $n$ 與 $m$ 一為奇數、一為偶數的時候 $f_n(x)$ 與 $f_m(x)$ 正交，即 $(f_n(x), f_m(x))= 0$。我們當然可以依 Gram-Schmidt 正交化的步驟來處理這組基底，先定義
+
+\begin{align}
+f_0'(x)&=f_0(x)=x^0\exp\left(-\frac{x^2}{2}\right),
+\end{align}
+
+然後建構 $f_1'(x)=f_1(x)+\alpha f_0'(x)$ 且令 $(f_1'(x), f_0'(x))=0$ 而求出 $\alpha=-(f_0'(x),f_1(x))/$ $(f_0'(x),f_0'(x)) = 0$，即 $f_1'(x)=x\exp\left(-x^2/2\right)$。再令 $f_2'(x)=f_2(x)+\alpha f_1'(x)+\beta f_0'(x)$，由於 $f_2'(x)$ 分別與 $f_1'(x)$ 和 $f_0'(x)$ 正交而可求得 $\alpha=0,~ \beta=-1/2$，換言之 $f_2'(x)=(x^2-1\2)\exp\left(-x^2/2\right)$。透過相同的步驟我們可以計算出下一個基底向量 $f_3'(x)=(x^3-3x/2 )\exp\left(-x^2/2\right)$。我們發現這一組新的基底連續函數 $f_n'(x)$ 可以表示成 $\exp\left(-x^2/2\right)$ 與 $x$ 的多項式的乘積，而這個特別的多項式 $H_n(x)$又稱為 Hermite 多項式，即
+
+\begin{align}
+\notag f_0'(x)&=2^0H_0(x)\exp\left(-\frac{x^2}{2}\right)=\exp\left(-\frac{x^2}{2}\right),\\
+\notag f_1'(x)&=2^1H_1(x)\exp\left(-\frac{x^2}{2}\right)=2^1x\exp\left(-\frac{x^2}{2}\right),\\
+\notag f_2'(x)&=2^2H_2(x)\exp\left(-\frac{x^2}{2}\right)=2^2\left(x^2-\frac{1}{2}\right)\exp\left(-\frac{x^2}{2}\right),\\
+\notag \cdots\\
+f_n'(x)&=2^nH_n(x)\exp\left(-\frac{x^2}{2}\right).
+\end{align}
+
+Hermite 多項式的性質將於下一章再仔細分析。如果我們再進一步將 $f_n'(x)$ 正則化，所得到的 $\tilde{f_n}(x)$ 則表為
+
+
+\begin{align}
+\tilde{f_n}(x)=\frac{f_n'(x)}{\sqrt{(f_n'(x),f_n'(x))}}=\frac{1}{\sqrt{2^nn!\sqrt{\pi}}}\exp\left(-\frac{x^2}{2}\right)H_n(x),
+\end{align}
+
+
+讀者不難認出 $f_n'(x)$ 其實就是一維簡諧振盪量子系統所解出來的本徵函數（eigenfunctions）。
+
+\section{完備性與 Hilbert 空間}
+
+向量空間裡，一個向量 $\psi $ 的範數（norm）以 $ \norm{\psi} $ 表之，它是一個非負值的函數；這裡所謂的函數，指的是向量 $psi$ 的函數。範數必須滿足下面三個條件：
+
+\addtocounter{equation}{1}
+\begin{align*}
+&\norm{\psi}\geqslant 0,~~~~~ \mbox{當 } \psi \mbox{等於零向量時，即 } \psi=0，\mbox{則} \norm{\psi}=0 \tag{\arabic{chapter}.\arabic{equation}a}\\  
+&\norm{a\psi}=|a|\cdot\norm{\psi},\tag{\arabic{chapter}.\arabic{equation}b}\\
+&\norm{\psi +\phi}\leqslant \norm{\psi}+\norm{\phi}.\tag{\arabic{chapter}.\arabic{equation}c} 
+\end{align*}
+
+向量的內積和向量的範數（norm）各有不同的意義及其必須滿足的條件。但是物理學者常把這兩者混為一談，原因在於 Schwarz 不等式可以透過內積操作導出，因此如果把 $\norm{\psi}^2$ 認定為 $(\psi, \psi)$，那麼向量的內積也可以滿足前述範數定義中三個條件，以致兩者混合使用。嚴格來說，範數的條件比內積來的寬鬆，我們會以範例七來說明。
+
+\subsubsection*{範例七}
+
+令 $ f(x)$ 為  $\mbox{C}(a,b) $ 的函數，即 $ f(x) $ 為 $ a \leqslant x\leqslant b $ 的連續函數。我們可以定義 $\norm{f(x)}$ 為 $\sqrt{((f(x),f(x))}$ ，因為
+
+\addtocounter{equation}{1}
+\begin{align*}
+(f(x),f(x))&=0,\mbox{代表 } f(x) {在 }a \leqslant x\leqslant b \mbox{間恆為零}. \tag{\arabic{chapter}.\arabic{equation}a}\\  
+\norm{af(x)}^2&=(af(x), af(x))=|a|^2(f(x), f(x))\tag{\arabic{chapter}.\arabic{equation}b}\\
+(\norm{\psi}+\norm{\varphi})^2&=\norm{\psi}^2+2\norm{\psi}\cdot\norm{\varphi}+\norm{\varphi}^2\\
+& \geqslant \norm{\psi}^2+2|\psi\cdot\varphi |+\norm{\varphi}^2\geqslant \norm{\psi+\varphi}^2.\tag{\arabic{chapter}.\arabic{equation}c} 
+\end{align*}
+
+\subsection{Cauchy 序列 and convergent sequence}
+Consider an infinite dimensional vector space and denote the basis by $ \{\phi_1,\phi_2,\phi_3,\ldots \} $. We construct the partial sum $ \psi_N=\sum_ia_i\phi_i $, where $ i $ runs from $ 1 $ to $ N $, and obtain $ \ldots,\psi_j,\psi_{j+1},\ldots ,\psi_m,\psi_{m+1},\ldots, \psi_n,\ldots $ for increasing values in $ N $ that forms an infinite sequence. The sequence is called a \textbf{Cauchy sequence}\index{Cauchy sequence} if 
+$$
+\lim_{n\rightarrow \infty} \psi_n=\lim_{m\rightarrow \infty} \psi_m,~~~~~~~~ 
+$$
+or more precisely to put in terms of norm, i.e, $ \displaystyle\lim_{n,m\rightarrow \infty}\norm{\psi_n-\psi_m}=0 $. 
+
+It is said that a vector $ \psi_m $ converges to $ \psi $ if 
+
+$$
+\lim_{m\rightarrow\infty}\psi_m =\psi,  ~~~\mbox{or}~~~ \lim_{m\rightarrow \infty}\norm{\psi_m-\psi}=0, 
+$$ 
+
+\noindent then $ \{\ldots,\psi_{m-1},\psi_{m},\ldots\} $ is called a \textbf{convergent sequence}\index{convergent sequence}.
+
+It is easily concluded that every convergent sequence is a Cauchy sequence. Yet it is not necessary true conversely. Namely a Cauchy sequence is not always a convergent sequence.
+
+\subsection{Complete vector space}
+\index{completeness!complete vector space}\index{space!complete vector space}
+A vector space, in which every Cauchy sequence of a vector $ \psi_m $ converges to a limiting vector $ \psi $, is called a complete vector space.
+
+\subsection{Hilbert space}
+\index{Hilbert space}\index{space!Hilbert space}
+A Hilbert space is a complete vector space with norm defined as the inner product. A Hilbert space, finite dimensional or infinite dimensional, is separable if its basis is countable.

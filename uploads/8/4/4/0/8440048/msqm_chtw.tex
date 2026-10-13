@@ -1,0 +1,258 @@
+\documentclass[a4paper,twoside,12pt]{book}
+
+%\usepackage{CJK}
+%\usepackage{xeCJK}
+\usepackage{amssymb}
+\usepackage{fontspec}
+\setmainfont{cwTeX 明體}
+\newfontfamily\mylt{jsMath-cmti10}
+\newfontfamily\mysm{Courier New}
+%\setmainfont[ItalicFont]{jsMath-cmti10}
+
+%\setmainfont{cwTeX 粗黑體}
+
+%\newfontfamily\cwbm{cwTeX 粗黑體}
+%\newfontfamily\cwbm{cwTeX 楷書}
+%\setCJKmainfont{cwTeX 明體}
+
+\usepackage{multicol}
+\usepackage{graphicx}
+\usepackage{bm, amsmath, url}
+\usepackage{amsfonts, keystroke}
+\usepackage{appendix, enumitem, listings}
+\usepackage{fancyvrb}
+\usepackage[Lenny]{fncychap}
+\usepackage{fullpage} 
+%minitoc}
+\usepackage{xcolor}
+\definecolor{bgcolor}{rgb}{0.9,0.9,0.9}
+%定义背景颜色
+\lstloadlanguages{[LaTeX]TeX}
+
+%\setcounter{parttocdept}{3}
+%\setlength{\ptcindent}{0pt}
+%\renewcommand{\mtcfont}{\footnotesize\cwbm} 
+%\renewcommand{\mtcSfont}{\small}
+
+\newenvironment{latexample}[1][language={[LaTeX]TeX}]
+{\lstset{backgroundcolor=\color{bgcolor},
+    keywordstyle=\color[rgb]{0,0,1},
+    commentstyle=\color[rgb]{0.133,0.545,0.133},
+    stringstyle=\color[rgb]{0.627,0.126,0.941},
+    breaklines=true,
+    prebreak = \raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
+    frame=single,
+    language={[LaTeX]TeX},
+    basicstyle=\footnotesize\ttfamily, #1}
+  \VerbatimEnvironment\begin{VerbatimOut}{latexample.verb.out}}
+  {\end{VerbatimOut}\noindent
+  \begin{minipage}{0.5\linewidth}
+    \lstinputlisting[]{latexample.verb.out}%
+  \end{minipage}\qquad
+  \begin{minipage}{0.4\linewidth}
+    \input{latexample.verb.out}
+  \end{minipage}\\
+}
+
+\newenvironment{latexamplefull}[1][language={[LaTeX]TeX}]
+{\lstset{backgroundcolor=\color{bgcolor},
+    keywordstyle=\color[rgb]{0,0,1},
+    commentstyle=\color[rgb]{0.133,0.545,0.133},
+    stringstyle=\color[rgb]{0.627,0.126,0.941},
+    breaklines=true,
+    prebreak = \raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
+    frame=single,
+    language={[LaTeX]TeX},
+    basicstyle=\footnotesize\ttfamily, #1}
+  \VerbatimEnvironment\begin{VerbatimOut}{latexample.verb.out}}
+  {\end{VerbatimOut}\noindent
+  \centering\begin{minipage}{0.8\linewidth}
+    \lstinputlisting[]{latexample.verb.out}%
+  \end{minipage}\qquad
+  \\
+}
+%\renewcommand{\chaptername}{Chapter~\arabic{chapter}}
+%\renewcommand{\thechapter}{\cwbm}
+%\renewcommand{\thesection}{\cwbm{\arabic{chapter}.\arabic{section}}}
+%\renewcommand{\thesubsection}{\cwbm{\arabic{chapter}.\arabic{section}.\arabic{subsection}}}
+\VerbatimFootnotes
+
+
+\addtolength{\headsep}{+1cm}
+\addtolength{\oddsidemargin}{+0.5cm}
+\addtolength{\evensidemargin}{-0.5cm}
+
+%%\voffset=-0.5cm
+%\hoffset=-0.5cm
+%%\setlength{\topmargin}{-0.15in}
+%\setlength{\topmargin}{0.5cm}
+%\setlength{\headheight}{0in}
+%\setlength{\headsep}{0.5in}
+%\setlength{\footskip}{1in}
+%\setlength{\textwidth}{17cm}
+%\setlength{\textheight}{23cm}
+%\setlength{\marginparsep}{0in}
+%\setlength{\marginparwidth}{0in}
+%%\setlength{\oddsidemargin}{0in}
+%%\setlength{\evensidemargin}{-0in}
+
+
+\usepackage{fancyhdr}
+\usepackage{booktabs}
+%\usepackage[cam,a4,center]{crop}
+%\usepackage{geometry}
+\pagestyle{fancy}
+
+\renewcommand{\headrulewidth}{0.4pt}
+%\renewcommand{\headrulelength}{\textwidth}
+\renewcommand{\sectionmark}[1]{\markright{\sl{\thesection.\ #1}}}
+\renewcommand{\leftmark}{{\sl Chapter}.\thechapter }
+%\lhead{\footnotesize\rightmark}
+%\rhead{\thepage}
+\fancyfoot{}
+\fancyhead[RE]{\footnotesize\leftmark}
+\fancyhead[LO]{\footnotesize\rightmark}
+\fancyhead[LE,RO]{\thepage}
+
+
+
+\XeTeXlinebreaklocale "zh"
+\XeTeXlinebreakskip = 0pt plus 1pt
+\setlength{\parskip}{0.3cm}
+
+%%%%%%%%%%%%%%
+\newcommand{\engline}[1]{\renewcommand\baselinestretch{1}\selectfont #1\par~\\[-36pt]}
+\newcommand{\myepigraph}[2]{\noindent~~~~~~~~~~~~~~~~~~~\begin{minipage}{0.8\textwidth}\setlength{\parsep}{0pt} \mysm\begin{small}\engline{#1}
+\end{small}\\[-10pt]\hline\end{minipage}\end{center}\begin{flushright}\mysm \begin{small}~\\[-24pt]#2\end{small}~~~~~\end{flushright}\\~\\[-24pt]}
+
+
+
+%%%%%%%%%%%%%%
+\newcommand{\btn}[1]{
+\fboxrule=0.7pt
+\fboxsep=1.2pt
+\fbox{#1}}
+\newcommand{\btnn}{\Enter}
+%\newcommand{\btnn}{\fboxrule=0.7pt
+%\fboxsep=1.2pt
+%~~~\fbox{\textsc{Enter}}}
+
+\newcommand{\ex}{\addtocounter{subsection}{+1}
+\subsubsection{Ex~\underline{\thesubsection}}}
+\newcommand{\ans}{
+\subsubsection*{\underline{Ans:}}}
+\newcommand{\resl}[1]{\textcolor{blue}{#1}}
+\newcommand{\reslc}[1]{\textcolor{teal!65!black}{\tt{//}~\textrm{#1}}}
+\newcommand{\reslp}[1]{\textcolor{blue}{\tt{\%}~\textrm{#1}}}
+\newcommand{\resle}[1]{\textcolor{blue}{\textrm{#1}}}
+\newcommand{\scicode}[1]{\bigskip\noindent\fbox{\begin{minipage}{0.95\textwidth}~\begin{minipage}{0.95\textwidth}~\\[-5pt]#1\end{minipage}\\\smallskip\end{minipage}}\bigskip\vline\vline\vline}
+
+\newcommand{\norm}[1]{\|#1\|}
+%\newcommand{\sdelta}{{\scriptstyle\Delta}}
+\newcommand{\sdelta}{\Delta}
+\newcommand{\bra}[1]{\langle#1|}
+\newcommand{\ket}[1]{|#1\rangle }
+\newcommand{\bket}[1]{\Big |#1\Big\rangle }
+\newcommand{\braket}[2]{\langle#1|#2\rangle }
+\newcommand{\proj}[2]{|#1\rangle\langle#2|}
+\newcommand{\expect}[2]{\langle #1\rangle_{#2}}
+\newcommand{\expecto}[1]{\langle #1\rangle}
+\newcommand{\Kappa}[0]{\bm{\mathcal{K}}}
+\newcommand{\parity}[0]{\bm{\mathcal{P}}}
+\newcommand{\parityl}[0]{\bm{p}}
+\newcommand{\charge}[0]{\bm{\mathcal{C}}}
+%\DefineShortVerb{\|\#}
+%%%%%%%%%%%%%%%
+
+%\setitemize{noitemsep}
+%\setenumerate{noitemsep}
+\setitemize{itemsep=-5pt}
+\setenumerate{itemsep=-5pt}
+\linespread{1.35}
+
+
+\begin{document}
+\begin{titlepage}
+\title{量子力學的數學結構}
+\author{Kow Lung Chang 張國龍\\
+Physics Department, National Taiwan University\\~\\~\\}
+\maketitle
+\end{titlepage}
+
+
+%
+%\begin{titlepage}
+%
+%\title{量子力學的數學結構}
+%\author{Kow Lung Chang~張國龍\\\\
+%Physics Department, National Taiwan University} 
+%
+%\date
+%\maketitle
+%\end{titlepage}
+
+\pagestyle{empty}
+\frontmatter
+
+
+~\\~\\~\\~\\~\\~\\~\\
+\begin{center}
+{\LARGE \sl TO FEZA AND SUHA}
+\end{center}
+
+
+~~~
+\newpage
+
+\setcounter{page}{7}
+\pagestyle{plain}
+\begin{raggedleft} {\LARGE 引言}\end{raggedleft}\\\\
+
+研究不同的學門所使用的數學工具會有所差異; 在古典力學的領域裡，我們需要具備變分學（variational calculus）的知識，才能處理一群（或一個）質點的動力方程式。在量子力學裡，也一樣需要一些不同的數學工具。我們需要線性代數（linear algebra）, 線性向量空間（linear vector space）的知識，更重要的是對 Hilbert 空間 （Hilbert space）的了解和熟稔，才能完全領會量子力學最基本的四大公理（the four postuates of quantum mechanics）。
+
+不同的探討領域，也還需要不同的數學工具。量子力學系統中，很重要的一個特徵是系統的對稱性（symmetry property）。當我們研究系統的對稱轉換（symmetry transformation）時，就需要用到連續群（continuous group）或李群（Lie group）的理論及其 group representations。
+
+從我過去講授量子力學課程的經驗裡，時常遇到一個由學生提出的共同問題：到底我們要具備多少數學的背景知識，才能有信心、有效率地來研修這門課程。當然這個問題難給予統一的答案，因為學生當中所具備的數學背景頗為懸殊，一般大學部標準的應用數學課程，一定包括線性代數等範圍，有的學生也會到數學系選修群論（group theory）等課程。當我無法在講授量子力學的同時解決擁有不同數學背景學生們遇到的困難時，我只能數度修訂我的量力講義，當需使用到特殊的數學工具時，我將這些資料先行介紹給學生，節省他們重新摸索的時間。
+
+這本書首先回顧線性向量空間，並以其數學術語來闡述量子力學的基本定律。第一章除了介紹量子力學前三大定律外，也討論在量子力學中不可或缺，線性算子（linear operators）和 dynamical observables 之間的關係。
+
+量子力學當然不只是解某一特定的系統的 Schr\"{o}dinger 方程式，但是傳統上它卻一再用來作為系統量化的實例： 如氫原子光譜，或者它的角動量。本書第二章藉由將前一章抽象的量子理論數學架構轉化為讀者熟悉的 q-representation 與 p-representation ，同時輔以經典的簡諧振子（harmonic oscillator）為例，說明 N-representation 與 q-representation 之間的關係。
+
+很多作者試圖以波包（wave packet）的方法來推導 Schr\"{o}dinger 方程式。嚴格來說，Schr\"{o}dinger 方程式絕對不是波包運動時省略某些項而獲得的近似結果。Schr\"{o}dinger 方程式是一個 exact equation，並且是量子力學中唯一的 dynammical postulate。正如同古典力學中，牛頓第二運動定律：$\vec{f}=m\vec{a}$ 是 dynamical law of motion 而不是可從推導去獲得一般，Schr\"{o}dinger 方程式這個動力學上的假設決定了一個量子態（quantum state） 隨時間的演化（time evolution）。在第二章結束以前，我們將示範在古典理論的極限下，即 $\hbar\rightarrow 0$ 時，古典力學的運動方程式確實可以從量子系統時域演化所定義的傳播子（propagator）之極大值再次獲得。
+
+從第三章到最後一章，探討的重心完全集中於量子系統的對稱性。在第三章中，我們分別探討連續群（continuous group）與離散群（discrete group）; 介紹李群（Lie group）與李代數（Lie algebra），並且深入分析 半純李群（semisimple Lie group）及 半純李群代數（semisimple Lie algebra） 之標準形（standard form）。至於離散群的對稱性則僅限於 PCT 的分析。
+
+第四章則由 O(3) 及 SU(2) 對稱群來探討角動量，並介紹 O(3) 的不可約表示（	irreducible representation ）與球諧函數（spherical harmonics）之間的關聯。最後也介紹 dynamical symmetry 在 Coulomb 力作用之系統中的應用來做總結。
+
+最後一章從時空的對稱轉換來建構 Lorentz 群，並且從 Lorentz 群的有限維表示（finite dimensional representation）來進行具有不同內稟自旋（intrinsic spin）粒子的分類。我們特別以 Dirac 粒子為例詳細地探討 Dirac 方程式及其相關的 PCT 轉換的特徵。
+
+本書的專門術語將儘量依照國家教育研究院公告之學術名詞對照表給予中文譯名，並在該名詞首次出現時同時列出英文原名。少部份無適當譯名之術語則照列原文。另外也可以從附錄的中英名詞對照表來檢索。
+
+
+
+\begin{flushleft}
+Taipei, Taiwan\\ 
+September, 2011\hfill Kow Lung Chang
+\end{flushleft}
+
+\newpage
+
+\setcounter{page}{9}
+\pagestyle{fancy}
+\fancyhead[RE]{\footnotesize\textit{Contents}}
+\fancyhead[LO]{\footnotesize\textit{Contents}}
+\pretolerance=10000
+\begin{small}
+\tableofcontents
+\end{small}
+\pretolerance=100
+
+\mainmatter
+\fancyhead[RE]{\footnotesize\leftmark}
+\fancyhead[LO]{\footnotesize\rightmark}
+%\thispagestyle{headings}
+\pagestyle{fancy}
+%\input{chap1}
+\input{chap2}
+
+\end{document}
